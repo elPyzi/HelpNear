@@ -56,6 +56,7 @@ CREATE TABLE users (
 
 CREATE TABLE professionals (
     id bigserial PRIMARY KEY,
+    info TEXT not null,
     fk_user int NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
     fk_center int REFERENCES support_centers(id) ON DELETE CASCADE
 );

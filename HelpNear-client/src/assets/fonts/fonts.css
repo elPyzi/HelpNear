@@ -1,0 +1,20 @@
+:root {
+  --primary-font: 'Roboto';
+  --secondary-font: 'Montserrat';
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src:
+    local('Roboto'),
+    local('roboto'),
+    url('./Roboto/Roboto.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src:
+    local('Montserrat'),
+    local('montserrat'),
+    url('./Montserrat/Montserrat.woff2') format('woff2');
+}

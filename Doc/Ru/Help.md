@@ -3,7 +3,7 @@
 ## Подсказка по проекту
 
 1. [Логика проекта](./Logic.md)
-2. [Логика авторизации](./Auth.md)
+2. [API адреса](./ApiUrls.md)
 3. [Обзор БД](../DB.md)
 
 ## Тех стек
@@ -12,8 +12,9 @@
 
 1) `React` + `TS`
 2) `React Query` + `React Router Dom` + `Redux Toolkit` + `React Charts`
-3) `Vite` + `Eslint` + `Prettier`
-4) Helpers: `js-Cookie`
+3) `gsap` + `gsap/react`
+4) `Vite` + `Eslint` + `Prettier`
+5) Helpers: `js-Cookie`
 
 ### Сервер
 

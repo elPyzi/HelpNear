@@ -23,14 +23,3 @@ Complete documentation in English:
 </div>
 
 </div>
-
-<style>
-  a {
-    color: #0366d6;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-</style>
