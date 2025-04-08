@@ -21,6 +21,7 @@ export const API_CONFIG = {
       GET_CONCLUSION: 'client/conclusion',
       ACCEPT_CONCLUSION: 'client/accept-conclusion',
       REFUSE_CONCLUSION: 'client/refuse-conclusion',
+      RATE: 'client/rate/',
     },
     PROFESSIONAL: {
       BASE_URL: 'professional/',

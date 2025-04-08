@@ -27,7 +27,8 @@ CREATE TABLE support_centers (
     name varchar(50) NOT NULL,
     address varchar(100) NOT NULL,
     contact_number varchar(15) NOT NULL,
-    email varchar(50)
+    email varchar(50),
+    average_rating DECIMAL(3,2) DEFAULT NULL
 );
 
 CREATE TABLE problems (
@@ -57,6 +58,7 @@ CREATE TABLE users (
 CREATE TABLE professionals (
     id bigserial PRIMARY KEY,
     info TEXT not null,
+    average_rating DECIMAL(3,2) DEFAULT NULL,
     fk_user int NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
     fk_center int REFERENCES support_centers(id) ON DELETE CASCADE
 );
@@ -64,14 +66,63 @@ CREATE TABLE professionals (
 CREATE TABLE clients (
     client_id bigserial PRIMARY KEY,
     fk_user_id int NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
-    fk_professional_id int REFERENCES professionals(id) ON DELETE SET NULL
+    fk_professional int REFERENCES professionals(id) ON DELETE SET NULL
 );
 
 CREATE TABLE appointments (
-    appointment_id bigserial NOT NULL PRIMARY KEY,
-    appointment_text text NOT null,
-    fk_user_id int NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    fk_professional_id int REFERENCES professionals(id) ON DELETE SET NULL,
+    id bigserial NOT NULL PRIMARY KEY,
+    text_info text NOT null,
+    fk_user int NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    fk_professional int REFERENCES professionals(id) ON DELETE SET NULL,
     fk_problem int REFERENCES problems(id) ON DELETE cascade
 );
+
+
+CREATE TABLE center_ratings (
+    id bigserial NOT NULL PRIMARY KEY,
+    center_id bigint NOT NULL REFERENCES support_centers(id) ON DELETE CASCADE,
+    user_id bigint NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    rating smallint NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment text,
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (center_id, user_id) 
+);
+
+
+CREATE TABLE professional_ratings (
+    id bigserial NOT NULL PRIMARY KEY,
+    professional_id bigint NOT NULL REFERENCES professionals(id) ON DELETE CASCADE,
+    user_id bigint NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    rating smallint NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment text,
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (professional_id, user_id) 
+);
+
+```
+
+## Вставка первичных данных
+
+```sql
+-- Статусы решения проблемы
+INSERT INTO problem_processing (process) VALUES 
+('idle'),
+('processing'),
+('fulfilled'),
+('rejected');
+
+-- Роли
+INSERT INTO roles (role_name) VALUES 
+('CITIZEN'),
+('CENTER'),
+('PROFESSIONAL'),
+('ADMIN');
+
+-- Статусы проблем
+INSERT INTO problem_status (status) VALUES 
+('EXTRA HIGH'),
+('HIGH'),
+('MEDIUM'),
+('LOW'),
+('MINOR');
 ```
