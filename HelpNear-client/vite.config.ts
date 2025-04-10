@@ -21,4 +21,7 @@ export default defineConfig({
       include: '**/*.svg',
     }),
   ],
+  css: {
+    modules: { generateScopedName: '[hash:base64:1000]' },
+  },
 });
