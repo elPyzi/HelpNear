@@ -36,6 +36,7 @@ export const API_CONFIG = {
     ADMIN: {
       BASE_URL: 'admin/',
       GET_USERS: 'admin/get-users',
+      ADD_SUPPORT_CENTER: 'admin/add-support-center',
     },
   },
 };

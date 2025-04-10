@@ -17,7 +17,7 @@ CREATE TABLE problem_status (
     status varchar(50) NOT NULL DEFAULT 'Minor'
 );
 
- create table problem_processing(
+create table problem_processing(
     id bigserial NOT NULL PRIMARY KEY,
     process varchar(50) NOT NULL DEFAULT 'idle'
 );
@@ -28,7 +28,8 @@ CREATE TABLE support_centers (
     address varchar(100) NOT NULL,
     contact_number varchar(15) NOT NULL,
     email varchar(50),
-    average_rating DECIMAL(3,2) DEFAULT NULL
+    avatar bytea not null,
+    average_rating DECIMAL(3,2) DEFAULT null
 );
 
 CREATE TABLE problems (
@@ -45,11 +46,13 @@ CREATE TABLE problems (
 CREATE TABLE users (
     id bigserial NOT NULL PRIMARY KEY,
     login varchar(50) NOT NULL,
+    password varchar(50) not null,
     full_name varchar(100) NOT NULL,
-    user_email varchar(50) NOT NULL,
+    email varchar(50) NOT NULL,
     birth_date date NOT NULL,
     address varchar(100) NOT NULL,
     contact_number varchar(15) NOT NULL,
+    avatar bytea,
     isBaned boolean not null default false,
     fk_user_role int REFERENCES roles(id) ON DELETE CASCADE,
     fk_problem int REFERENCES problems(id) ON DELETE cascade
@@ -59,6 +62,12 @@ CREATE TABLE professionals (
     id bigserial PRIMARY KEY,
     info TEXT not null,
     average_rating DECIMAL(3,2) DEFAULT NULL,
+    fk_user int NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+    fk_center int REFERENCES support_centers(id) ON DELETE CASCADE
+);
+
+create table center_employee(
+	id bigserial PRIMARY KEY,
     fk_user int NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
     fk_center int REFERENCES support_centers(id) ON DELETE CASCADE
 );

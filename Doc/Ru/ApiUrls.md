@@ -361,6 +361,20 @@ text_info:string
 
 **Описание**: Центр завершает проблему и ставить статус `fulfilled`
 
+#### support-center/{add/remove}/professionals
+
+**Метод**: `POST`
+
+**Описание**: Добавление или удаление профессионала с центра
+
+***Отправка***
+
+id профессионала
+
+```ts
+id:number
+```
+
 ### ADMIN
 
 #### admin/get-users
@@ -383,3 +397,19 @@ text_info:string
 **Метод**: `PUT`
 
 **Описание**: Взаимодействие с пользователями, action это что сделать надо с пользователем. Actions: `ban, unBan, setAdmin, removeAdmin`
+
+#### admin/add-support-center
+
+**Метод**: `POST`
+
+**Описание**: Админ добавляет центр
+
+***Отправка***
+
+```ts
+name:string
+address:string
+contact_number:string
+email:string
+avatar:bytea
+```
