@@ -38,7 +38,7 @@ public class AuthService {
         }
 
         Users user = new Users();
-        user.setUserEmail(registrationRequest.getEmail());
+        user.setEmail(registrationRequest.getEmail());
         user.setRole(result.get());
         user.setLogin(registrationRequest.getLogin());
         user.setFullName(registrationRequest.getFull_name());
@@ -46,6 +46,7 @@ public class AuthService {
         user.setContactNumber(registrationRequest.getContact_number());
         user.setAddress(registrationRequest.getAddress());
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+        user.setAvatar(null);
 
         try {
             usersRepo.save(user);
@@ -67,7 +68,7 @@ public class AuthService {
         try {
             Users user = new Users();
             if (loginRequest.getLogin() == null) {
-                user = usersRepo.findByUserEmail(loginRequest.getEmail())
+                user = usersRepo.findByEmail(loginRequest.getEmail())
                         .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
             }
             else if (loginRequest.getEmail() == null){
@@ -80,7 +81,7 @@ public class AuthService {
                 String refreshToken = jwtUtils.generateRefreshToken(user);
 
                 responseLoginUser.setFull_name(user.getFullName());
-                responseLoginUser.setEmail(user.getUserEmail());
+                responseLoginUser.setEmail(user.getEmail());
                 responseLoginUser.setBirth_date(user.getBirthDateAsString());
                 responseLoginUser.setContact_number(user.getContactNumber());
                 responseLoginUser.setAddress(user.getAddress());
@@ -135,7 +136,7 @@ public class AuthService {
             }
 
             responseLoginUser.setFull_name(user.getFullName());
-            responseLoginUser.setEmail(user.getUserEmail());
+            responseLoginUser.setEmail(user.getEmail());
             responseLoginUser.setBirth_date(user.getBirthDateAsString());
             responseLoginUser.setAddress(user.getAddress());
             responseLoginUser.setContact_number(user.getContactNumber());

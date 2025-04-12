@@ -13,7 +13,7 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "login", nullable = false, length = 50)
     private String login;
@@ -24,8 +24,8 @@ public class Users {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "user_email", nullable = false, length = 50)
-    private String userEmail;
+    @Column(name = "email", nullable = false, length = 50)
+    private String email;
 
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
@@ -36,8 +36,11 @@ public class Users {
     @Column(name = "contact_number", nullable = false, length = 15)
     private String contactNumber;
 
-    @Column(name = "isBaned", nullable = false)
-    private Boolean isBaned = false;
+    @Column(name = "isbaned", nullable = false)
+    private Boolean isBanned = false;
+
+    @Column(name = "avatar", nullable = true)
+    private byte[] avatar;
 
     @ManyToOne
     @JoinColumn(name = "fk_user_role", referencedColumnName = "id", nullable = false)
@@ -47,8 +50,7 @@ public class Users {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             this.birthDate = LocalDate.parse(dateString, formatter);
-        }
-        catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Неверный формат даты. Ожидается dd.MM.yyyy");
         }
     }
@@ -60,5 +62,4 @@ public class Users {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         return this.birthDate.format(formatter);
     }
-
 }
