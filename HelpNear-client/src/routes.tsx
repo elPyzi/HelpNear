@@ -8,9 +8,14 @@ import Layout from '@layouts/Layout';
 // Импорты компонентов
 
 import Home from '@pages/Home/Home';
+import ProtectedAuth from '@utils/ProtectedRoutes/ProtectedAuth';
 const Account = lazy(() => import('@pages/Account/Account'));
 const Professionals = lazy(() => import('@pages/Professionals/Professionals'));
 const SupportCenters = lazy(() => import('@pages/Centers/Centers'));
+const Login = lazy(() => import('@pages/Auth/Login/Login'));
+const Registration = lazy(
+  () => import('@pages/Auth/Registration/Registration'),
+);
 
 export const routes: RouteObject[] = [
   {
@@ -31,14 +36,20 @@ export const routes: RouteObject[] = [
       },
       {
         path: 'account',
-        element: <Account />,
+        element: (
+          <ProtectedAuth>
+            <Account />
+          </ProtectedAuth>
+        ),
       },
     ],
   },
   {
     path: 'login',
+    element: <Login />,
   },
   {
     path: 'registration',
+    element: <Registration />,
   },
 ];
