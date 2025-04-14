@@ -81,9 +81,7 @@ const Header = () => {
       </div>
 
       <nav className={`container ${styles['header__nav']}`}>
-        <NavLink to="/">
-          <HelpNear />
-        </NavLink>
+        <NavLink to="/">{/* <HelpNear /> */}#HelpHear</NavLink>
         <div className={styles['header__links']}>
           <NavLink
             to="support-centers"

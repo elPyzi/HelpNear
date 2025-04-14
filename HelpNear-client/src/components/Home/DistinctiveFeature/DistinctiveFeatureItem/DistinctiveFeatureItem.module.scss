@@ -1,0 +1,25 @@
+.distinctive-feature-item {
+  width: 250px;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 50px;
+
+  @media only screen and (min-width: 468px) {
+    margin-bottom: 0;
+  }
+
+  svg {
+    margin-bottom: 10px;
+  }
+
+  .distinctive-feature-item__title {
+    color: inherit;
+    font-family: var(--primary-font);
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  .distinctive-feature-item__description {
+    color: inherit;
+    font-family: var(--secondary-font);
+  }
+}
