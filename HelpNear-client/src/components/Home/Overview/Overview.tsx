@@ -5,6 +5,9 @@ import HelpHand from '@assets/images/help hand.png';
 import { useRef } from 'react';
 import { gsap } from 'gsap/gsap-core';
 import { useGSAP } from '@gsap/react';
+import { Observer } from 'gsap/Observer';
+
+gsap.registerPlugin(Observer);
 
 const Overview = () => {
   const overviewScope = useRef<HTMLDivElement>(null);
@@ -15,6 +18,7 @@ const Overview = () => {
   useGSAP(
     () => {
       const overviewTl = gsap.timeline({
+        paused: true,
         defaults: { duration: 3 },
       });
 
@@ -37,6 +41,19 @@ const Overview = () => {
           0,
         )
         .from(missionRef.current, { x: -100, opacity: 0 }, 1.5);
+
+      const observer = Observer.create({
+        type: 'wheel,scroll,touch',
+        onDown: () => {
+          overviewTl.play();
+          observer.kill();
+        },
+        onUp: () => {
+          overviewTl.play();
+          observer.kill();
+        },
+        preventDefault: false,
+      });
     },
     { scope: overviewScope },
   );

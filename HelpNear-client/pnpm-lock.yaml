@@ -41,6 +41,9 @@ importers:
       redux:
         specifier: ^5.0.1
         version: 5.0.1
+      swiper:
+        specifier: ^11.2.6
+        version: 11.2.6
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.7.3)(vite@6.2.4(@types/node@22.13.16)(sass-embedded@1.86.3))
@@ -1447,6 +1450,10 @@ packages:
   svg-parser@2.0.4:
     resolution: {integrity: sha512-e4hG1hRwoOdRb37cIMSgzNsxyzKfayW6VOflrwvR+/bzrkyxY/31WkbgnQpgtrNp1SdpJvpUAGTa/ZoiPNDuRQ==}
 
+  swiper@11.2.6:
+    resolution: {integrity: sha512-8aXpYKtjy3DjcbzZfz+/OX/GhcU5h+looA6PbAzHMZT6ESSycSp9nAjPCenczgJyslV+rUGse64LMGpWE3PX9Q==}
+    engines: {node: '>= 4.7.0'}
+
   sync-child-process@1.0.2:
     resolution: {integrity: sha512-8lD+t2KrrScJ/7KXCSyfhT3/hRq78rC0wBFqNJXv3mZyn6hW2ypM05JmlSvtqRbeq6jqA94oHbxAr2vYsJ8vDA==}
     engines: {node: '>=16.0.0'}
@@ -2818,6 +2825,8 @@ snapshots:
       has-flag: 4.0.0
 
   svg-parser@2.0.4: {}
+
+  swiper@11.2.6: {}
 
   sync-child-process@1.0.2:
     dependencies:
