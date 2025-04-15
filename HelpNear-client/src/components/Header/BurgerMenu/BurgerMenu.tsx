@@ -1,5 +1,7 @@
 import styles from './BurgerMenu.module.scss';
 
+import { PAGE_CONFIG } from '@/config/page.config';
+
 import { useState, useRef } from 'react';
 import { gsap } from 'gsap/gsap-core';
 import { useGSAP } from '@gsap/react';
@@ -68,7 +70,7 @@ const BurgerMenu = () => {
 
       <nav className={styles['burger-menu__nav']} ref={burgerMenuRef}>
         <NavLink
-          to="/"
+          to={PAGE_CONFIG.HOME}
           className={({ isActive }) =>
             isActive
               ? `${styles['burger-menu__link']} ${styles['burger-menu__link--active']}`
@@ -81,7 +83,7 @@ const BurgerMenu = () => {
           Главная
         </NavLink>
         <NavLink
-          to="support-centers"
+          to={PAGE_CONFIG.SUPPORT_CENTER}
           className={({ isActive }) =>
             isActive
               ? `${styles['burger-menu__link']} ${styles['burger-menu__link--active']}`
@@ -94,7 +96,7 @@ const BurgerMenu = () => {
           Центры
         </NavLink>
         <NavLink
-          to="professionals"
+          to={PAGE_CONFIG.PROFESSIONAL}
           className={({ isActive }) =>
             isActive
               ? `${styles['burger-menu__link']} ${styles['burger-menu__link--active']}`
@@ -107,7 +109,7 @@ const BurgerMenu = () => {
           Профессионалы
         </NavLink>
         <NavLink
-          to="account"
+          to={PAGE_CONFIG.ACCOUNT}
           className={({ isActive }) =>
             isActive
               ? `${styles['burger-menu__link']} ${styles['burger-menu__link--active']}`

@@ -15,7 +15,6 @@ const Overview = () => {
   useGSAP(
     () => {
       const overviewTl = gsap.timeline({
-        // paused: true,
         defaults: { duration: 3 },
       });
 

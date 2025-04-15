@@ -21,7 +21,7 @@
         opacity: 0;
         font-family: var(--primary-font);
         font-weight: 700;
-        color: var(--primary-color);
+        color: rgba($color: #ffffff, $alpha: 0.9);
         font-size: 48px;
         margin-bottom: 20px;
 
@@ -54,6 +54,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .header__logo {
+      font-family: var(--primary-font);
+    }
 
     .header__links,
     .header__profile {

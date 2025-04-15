@@ -3,8 +3,13 @@ export const PAGE_CONFIG = {
   LOGIN: 'login',
   REGISTRATION: 'registration',
   PROFESSIONAL: 'professionals',
-  ACCOUNT: {
-    ACCOUNT: 'account',
-    PROFILE: 'profile',
-  },
+  SUPPORT_CENTER: 'support-centers',
+  ACCOUNT: 'account',
+  PROFILE: 'profile',
+  CONCLUSION: 'conclusion',
+  PROBLEMS: 'problems',
+  PROCESSING_PROBLEMS: 'processing-problems',
+  HISTORY_PROBLEMS: 'history-problems',
+  USERS: 'users',
+  ERROR: 'error',
 };

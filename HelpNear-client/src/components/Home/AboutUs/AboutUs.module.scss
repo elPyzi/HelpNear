@@ -5,7 +5,7 @@
   gap: 50px;
   margin-bottom: 100px;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 1024px) {
     grid-template-columns: 300px 350px 300px;
     justify-content: space-around;
     gap: 0;

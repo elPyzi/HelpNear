@@ -1,7 +1,7 @@
-type TProfessional = {};
+import { Professional } from '@types/Users';
 
 const TopProfessionals = () => {
-  return <div>TopProfessionals</div>;
+  return <div></div>;
 };
 
 export default TopProfessionals;
