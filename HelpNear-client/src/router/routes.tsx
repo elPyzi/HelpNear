@@ -11,6 +11,7 @@ import Layout from '@layouts/Layout';
 
 import Home from '@pages/Home/Home';
 import ProtectedAuth from '@/router/ProtectedRoutes/ProtectedAuth';
+import Error from '@/pages/Errors/Error';
 const Account = lazy(() => import('@pages/Account/Account'));
 const Professionals = lazy(() => import('@pages/Professionals/Professionals'));
 const SupportCenters = lazy(() => import('@pages/Centers/Centers'));
@@ -67,5 +68,6 @@ export const routes: RouteObject[] = [
     path: PAGE_CONFIG.REGISTRATION,
     element: <Registration />,
   },
-  { path: PAGE_CONFIG.ERROR },
+  { path: `${PAGE_CONFIG.ERROR}/:type`, element: <Error /> },
+  { path: '*', element: <Error /> },
 ];
