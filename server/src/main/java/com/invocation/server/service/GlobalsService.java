@@ -1,12 +1,9 @@
 package com.invocation.server.service;
 
 import com.invocation.server.dto.*;
-import com.invocation.server.entity.Professional;
-import com.invocation.server.entity.SupportCenter;
-import com.invocation.server.entity.Users;
-import com.invocation.server.repository.ProfessionalRepo;
-import com.invocation.server.repository.SupportCenterRepo;
-import com.invocation.server.repository.UsersRepo;
+import com.invocation.server.entity.*;
+import com.invocation.server.repository.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -23,6 +20,10 @@ public class GlobalsService {
     private UsersRepo usersRepo;
     @Autowired
     private SupportCenterRepo supportCenterRepo;
+    @Autowired
+    private ProblemProcessingRepo problemProcessingRepo;
+    @Autowired
+    private ProblemRepo problemRepo;
 
     public ResponceErrorServerDto getAllProfessionals(ResponceProfessionalsDto responceProfessionalsDto) {
         try {
@@ -131,6 +132,7 @@ public class GlobalsService {
 
             for(SupportCenter supportCenter : supportCenters){
                 SupportCenterDto supportCenterDto = new SupportCenterDto();
+                supportCenterDto.setId(supportCenter.getId());
                 supportCenterDto.setName(supportCenter.getName());
                 supportCenterDto.setEmail(supportCenter.getEmail());
                 supportCenterDto.setAddress(supportCenter.getAddress());
@@ -147,6 +149,45 @@ public class GlobalsService {
         }
         catch (Exception e) {
             return new ResponceErrorServerDto(401);
+        }
+    }
+
+    public ResponceErrorServerDto acceptProblem(int id){
+        try {
+            Users user = usersRepo.findById(id)
+                    .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+            ProblemProcessing problemProcessing = problemProcessingRepo.findById(2)
+                    .orElseThrow(() -> new UsernameNotFoundException("Процесс не найден"));
+            Problem problem = problemRepo.findById(user.getProblem().getId())
+                    .orElseThrow(() -> new UsernameNotFoundException("Проблема не найдена"));
+            problem.setProblemProcessing(problemProcessing);
+            problemRepo.save(problem);
+            return new ResponceErrorServerDto(200);
+        }
+        catch (UsernameNotFoundException e) {
+            return new ResponceErrorServerDto(401);
+        }
+        catch (Exception e) {
+            return new ResponceErrorServerDto(401);
+        }
+    }
+
+    @Transactional
+    public ResponceErrorServerDto refuseProblem(int id) {
+        try {
+            Users user = usersRepo.findById(id)
+                    .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+
+            problemRepo.deleteById(user.getProblem().getId());
+            user.setProblem(null);
+            usersRepo.save(user);
+            return new ResponceErrorServerDto(200);
+        }
+        catch (UsernameNotFoundException e) {
+            return new ResponceErrorServerDto(401);
+        }
+        catch (Exception e) {
+            return new ResponceErrorServerDto(500);
         }
     }
 }

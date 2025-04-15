@@ -47,6 +47,7 @@ public class AuthService {
         user.setAddress(registrationRequest.getAddress());
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
         user.setAvatar(null);
+        user.setProblem(null);
 
         try {
             usersRepo.save(user);

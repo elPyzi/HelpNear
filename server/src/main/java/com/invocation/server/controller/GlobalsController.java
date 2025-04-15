@@ -7,9 +7,9 @@ import com.invocation.server.service.GlobalsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/globals")
@@ -36,5 +36,19 @@ public class GlobalsController {
         ResponceSupportCenterDto responceSupportCenterDto = new ResponceSupportCenterDto();
         ResponceErrorServerDto errorResponse = globalsService.getCenters(responceSupportCenterDto);
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceSupportCenterDto.getSupportCenters());
+    }
+
+    @PutMapping("/accept-problem/{id}")
+    public ResponseEntity<?> acceptProblem(@PathVariable int id) {
+        ResponceErrorServerDto errorResponse = globalsService.acceptProblem(id);
+        return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(errorResponse);
+    }
+
+    @PutMapping("/refuse-problem/{id}")
+    public ResponseEntity<?> refuseProblem(@PathVariable int id) {
+        ResponceErrorServerDto errorResponse = globalsService.refuseProblem(id);
+        return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode()))
+                .body(Collections.singletonMap("text",
+                        "Мы не можем рассмотреть вашу проблему 😔"));
     }
 }

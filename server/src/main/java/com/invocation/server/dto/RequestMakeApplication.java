@@ -7,12 +7,9 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class SupportCenterDto {
-    int id;
-    String name;
-    String address;
-    String contact_number;
-    String email;
-    double rating;
-    byte[] avatar;
+public class RequestMakeApplication {
+    String title;
+    String description;
+    String received_date;
+    int id_center;
 }
