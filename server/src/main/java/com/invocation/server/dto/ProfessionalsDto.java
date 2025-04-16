@@ -8,6 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class ProfessionalsDto {
+    int id;
     String email;
     String full_name;
     String contact_number;

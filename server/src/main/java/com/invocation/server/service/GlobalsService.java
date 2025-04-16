@@ -34,6 +34,7 @@ public class GlobalsService {
                         .orElseThrow(() -> new UsernameNotFoundException("Профессионал не найден"));
 
                 ProfessionalsDto professionalsDto = new ProfessionalsDto();
+                professionalsDto.setId(user.getId());
                 professionalsDto.setEmail(user.getEmail());
                 professionalsDto.setFull_name(user.getFullName());
                 professionalsDto.setContact_number(user.getContactNumber());
