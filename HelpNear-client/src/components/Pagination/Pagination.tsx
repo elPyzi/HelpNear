@@ -1,6 +1,6 @@
 import styles from './Pagination.module.scss';
 
-import { useState, memo } from 'react';
+import { memo } from 'react';
 
 type PaginationProps = {
   onNextPageClick: () => void;

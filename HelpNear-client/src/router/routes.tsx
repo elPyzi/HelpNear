@@ -6,6 +6,7 @@ import { PAGE_CONFIG } from '@/config/page.config';
 // Импорты layouts
 
 import Layout from '@layouts/Layout';
+import AuthLayout from '@/layouts/Auth/AuthLayout';
 
 // Импорты компонентов
 
@@ -18,6 +19,9 @@ const SupportCenters = lazy(() => import('@pages/Centers/Centers'));
 const Login = lazy(() => import('@pages/Auth/Login/Login'));
 const Registration = lazy(
   () => import('@pages/Auth/Registration/Registration'),
+);
+const PasswordRecovery = lazy(
+  () => import('@pages/Auth/PasswordRecovery/PasswordRecovery'),
 );
 
 export const routes: RouteObject[] = [
@@ -61,13 +65,25 @@ export const routes: RouteObject[] = [
     ],
   },
   {
-    path: PAGE_CONFIG.LOGIN,
-    element: <Login />,
+    path: PAGE_CONFIG.AUTH,
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        path: PAGE_CONFIG.LOGIN,
+        element: <Login />,
+      },
+      {
+        path: PAGE_CONFIG.REGISTRATION,
+        element: <Registration />,
+      },
+      {
+        path: PAGE_CONFIG.PASSWORD_RECOVERY,
+        element: <PasswordRecovery />,
+      },
+    ],
   },
-  {
-    path: PAGE_CONFIG.REGISTRATION,
-    element: <Registration />,
-  },
+
   { path: `${PAGE_CONFIG.ERROR}/:type`, element: <Error /> },
   { path: '*', element: <Error /> },
 ];

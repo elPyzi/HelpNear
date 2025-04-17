@@ -1,5 +1,7 @@
 export const PAGE_CONFIG = {
   HOME: '/',
+  AUTH: 'auth',
+  PASSWORD_RECOVERY: 'password-recovery',
   LOGIN: 'login',
   REGISTRATION: 'registration',
   PROFESSIONAL: 'professionals',

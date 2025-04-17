@@ -1,0 +1,93 @@
+@use '../../../assets/styles/mixins/auth.mixin.scss' as mixin;
+
+.registration {
+  @include mixin.auth-wrapper;
+
+  .registration__form {
+    @include mixin.auth-form;
+
+    .registration__title {
+      justify-self: center;
+      @include mixin.auth-title;
+
+      @media screen and (min-width: 768px) {
+        grid-column: 1 / span 2;
+      }
+    }
+
+    .registration__inp {
+      @include mixin.auth-input;
+
+      @media screen and (max-width: 768px) {
+        grid-column: 1 / span 2;
+      }
+    }
+
+    .registration__inp-email {
+      @media screen and (min-width: 768px) {
+        grid-column: 1 / span 2;
+      }
+    }
+
+    .registration__btn {
+      @include mixin.auth-btn;
+    }
+
+    .registration__btn-join {
+      padding: 10px 70px;
+      margin: 30px 0 20px 0;
+      background-color: var(--dark-color);
+      border-radius: 25px;
+      transition: background-color 0.3s;
+      grid-column: 1 / span 2;
+      justify-self: center;
+      grid-row: 6;
+
+      @media screen and (min-width: 768px) {
+        grid-row: 5;
+      }
+
+      &:hover {
+        background-color: var(--secondary-color);
+      }
+
+      &:disabled {
+        background-color: var(--not-accent-color);
+      }
+    }
+
+    .registration__avatar {
+      grid-row: 5;
+      margin-top: 20px;
+      grid-column: 1 / span 2;
+      justify-self: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+
+      @media screen and (min-width: 768px) {
+        grid-row: 4;
+      }
+
+      .registration__avatar-inp {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        opacity: 0;
+      }
+    }
+  }
+
+  .registration__btn-return {
+    grid-column: 1 / span 2;
+    grid-row: 7;
+
+    @media screen and (min-width: 768px) {
+      grid-row: 6;
+    }
+  }
+
+  .return {
+    @include mixin.auth-return;
+  }
+}
