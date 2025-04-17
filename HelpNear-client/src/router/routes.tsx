@@ -23,6 +23,8 @@ const Registration = lazy(
 const PasswordRecovery = lazy(
   () => import('@pages/Auth/PasswordRecovery/PasswordRecovery'),
 );
+const Users = lazy(() => import('@components/Account/Users/Users'));
+const Profile = lazy(() => import('@components/Account/Profile/Profile'));
 
 export const routes: RouteObject[] = [
   {
@@ -51,8 +53,7 @@ export const routes: RouteObject[] = [
       </ProtectedAuth>
     ),
     children: [
-      { index: true, path: PAGE_CONFIG.PROFILE },
-      { path: PAGE_CONFIG.CONCLUSION },
+      { index: true, path: PAGE_CONFIG.PROFILE, element: <Profile /> },
       {
         path: PAGE_CONFIG.PROBLEMS,
         children: [
@@ -61,7 +62,7 @@ export const routes: RouteObject[] = [
           { path: PAGE_CONFIG.PROCESSING_PROBLEMS },
         ],
       },
-      { path: PAGE_CONFIG.USERS },
+      { path: PAGE_CONFIG.USERS, element: <Users /> },
     ],
   },
   {

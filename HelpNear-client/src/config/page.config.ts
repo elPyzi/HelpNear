@@ -8,7 +8,6 @@ export const PAGE_CONFIG = {
   SUPPORT_CENTER: 'support-centers',
   ACCOUNT: 'account',
   PROFILE: 'profile',
-  CONCLUSION: 'conclusion',
   PROBLEMS: 'problems',
   PROCESSING_PROBLEMS: 'processing-problems',
   HISTORY_PROBLEMS: 'history-problems',
