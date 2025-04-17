@@ -1,0 +1,90 @@
+@mixin auth-wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+}
+
+@mixin auth-form {
+  display: grid;
+  justify-content: center;
+  row-gap: 10px;
+
+  padding: 40px 25px;
+  background-color: var(--third-color);
+  box-shadow: 7px 7px var(--secondary-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+
+  @media screen and (min-width: 469px) {
+    min-width: 350px;
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 15px;
+  }
+}
+
+@mixin auth-title {
+  font-size: var(--primary-font);
+  font-size: 32px;
+  color: inherit;
+  margin-bottom: 50px;
+
+  @media screen and (min-width: 469px) {
+    font-size: 48px;
+  }
+}
+
+@mixin auth-input {
+  background-color: transparent;
+  border-bottom: 1px solid var(--primary-color);
+  min-width: 200px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+
+  font-family: var(--secondary-font);
+  color: inherit;
+  text-align: center;
+
+  @media screen and (min-width: 469px) {
+    font-size: 18px;
+  }
+
+  &::placeholder {
+    font-size: inherit;
+    color: inherit;
+    text-align: center;
+    font-family: var(--secondary-font);
+  }
+}
+
+@mixin auth-btn {
+  font-family: var(--secondary-font);
+  color: var(--primary-color);
+  align-self: center;
+  text-align: center;
+}
+
+@mixin auth-error {
+  font-family: var(--secondary-font);
+  color: var(--primary-color);
+  text-align: center;
+}
+
+@mixin auth-return {
+  @include auth-btn;
+  padding: 10px 70px;
+  background-color: var(--dark-color);
+  border-radius: 25px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--secondary-color);
+  }
+}

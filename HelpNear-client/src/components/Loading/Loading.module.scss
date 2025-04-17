@@ -1,0 +1,12 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+
+  .loading__dot {
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+  }
+}

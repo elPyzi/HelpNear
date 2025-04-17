@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import { gsap } from 'gsap/gsap-core';
 import { useGSAP } from '@gsap/react';
 
+import { PAGE_CONFIG } from '@/config/page.config';
+
 import ForestVideo from '@assets/images/video/forest.mp4';
 import WaterVideo from '@assets/images/video/water.mp4';
 import SkyVideo from '@assets/images/video/sky.mp4';
@@ -15,7 +17,6 @@ import SkyPoster from '@assets/images/sky.jpeg';
 
 import BurgerMenu from './BurgerMenu/BurgerMenu';
 
-import HelpNear from '@assets/images/svg/HN.svg';
 import Profile from '@assets/images/svg/profile.svg';
 
 gsap.registerPlugin(useGSAP);
@@ -28,7 +29,7 @@ const Header = () => {
     () => {
       gsap.to(slogansRef.current, {
         opacity: 1,
-        duration: 0.5,
+        duration: 1,
         stagger: 1,
         ease: 'power2.out',
       });
@@ -81,8 +82,8 @@ const Header = () => {
       </div>
 
       <nav className={`container ${styles['header__nav']}`}>
-        <NavLink to="/">
-          <HelpNear />
+        <NavLink to={PAGE_CONFIG.HOME} className={styles['header__logo']}>
+          #HelpHear
         </NavLink>
         <div className={styles['header__links']}>
           <NavLink
@@ -96,7 +97,7 @@ const Header = () => {
             Центры
           </NavLink>
           <NavLink
-            to="/"
+            to={PAGE_CONFIG.HOME}
             className={({ isActive }) =>
               isActive
                 ? `${styles['header__link']} ${styles['header__link--active']}`
@@ -106,7 +107,7 @@ const Header = () => {
             Главная
           </NavLink>
           <NavLink
-            to="professionals"
+            to={PAGE_CONFIG.PROFESSIONAL}
             className={({ isActive }) =>
               isActive
                 ? `${styles['header__link']} ${styles['header__link--active']}`
@@ -117,7 +118,7 @@ const Header = () => {
           </NavLink>
         </div>
         <NavLink
-          to="account"
+          to={PAGE_CONFIG.ACCOUNT}
           className={({ isActive }) =>
             isActive
               ? `${styles['header__profile']} ${styles['header__profile--active']}`

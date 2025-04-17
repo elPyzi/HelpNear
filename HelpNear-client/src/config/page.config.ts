@@ -1,0 +1,16 @@
+export const PAGE_CONFIG = {
+  HOME: '/',
+  AUTH: 'auth',
+  PASSWORD_RECOVERY: 'password-recovery',
+  LOGIN: 'login',
+  REGISTRATION: 'registration',
+  PROFESSIONAL: 'professionals',
+  SUPPORT_CENTER: 'support-centers',
+  ACCOUNT: 'account',
+  PROFILE: 'profile',
+  PROBLEMS: 'problems',
+  PROCESSING_PROBLEMS: 'processing-problems',
+  HISTORY_PROBLEMS: 'history-problems',
+  USERS: 'users',
+  ERROR: 'error',
+};

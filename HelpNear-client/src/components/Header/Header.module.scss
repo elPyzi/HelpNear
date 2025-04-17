@@ -1,7 +1,7 @@
 .header {
-  margin-bottom: 1000px;
   position: relative;
-  background-color: rgba($color: #ffffff, $alpha: 0.5);
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: 10px;
 
   .header__preview {
     max-height: 100vh;
@@ -55,6 +55,10 @@
     justify-content: space-between;
     align-items: center;
 
+    .header__logo {
+      font-family: var(--primary-font);
+    }
+
     .header__links,
     .header__profile {
       display: none;
@@ -71,6 +75,7 @@
       .header__link {
         font-family: inherit;
         transition: font-size 0.3s linear;
+        color: var(--dark-color);
 
         &--active {
           font-size: 24px;

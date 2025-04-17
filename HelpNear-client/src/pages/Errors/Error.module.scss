@@ -1,0 +1,43 @@
+.error {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .error__img {
+    height: 350px;
+    margin-bottom: 40px;
+  }
+
+  .error__title {
+    font-family: var(--primary-font);
+    font-size: 200px;
+
+    @media screen and (min-width: 489px) {
+      font-size: 288px;
+    }
+  }
+
+  .error__message {
+    font-family: var(--secondary-font);
+    font-size: 24px;
+    margin-bottom: 50px;
+
+    @media screen and (min-width: 489px) {
+      font-size: 32px;
+    }
+  }
+
+  .error__btns {
+    .error__btn {
+      font-family: var(--secondary-font);
+      color: var(--primary-color);
+      background-color: var(--dark-color);
+      border-radius: 5px;
+
+      padding: 10px 30px;
+      margin-right: 10px;
+    }
+  }
+}
