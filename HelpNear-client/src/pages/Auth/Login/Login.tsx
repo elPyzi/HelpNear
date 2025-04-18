@@ -25,7 +25,7 @@ const Login = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<LoginData>();
 
   const { mutate: submitLogin } = useMutation({
@@ -72,6 +72,7 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
+    console.log(data);
     await submitLogin(data);
     reset();
   };
@@ -83,7 +84,7 @@ const Login = () => {
         <input
           type="text"
           placeholder="Email или login"
-          className={styles['login__inp']}
+          className={`${styles['login__inp']} ${errors.authString && styles['field__error']}`}
           tabIndex={0}
           {...register('authString', {
             required: true,
@@ -99,14 +100,14 @@ const Login = () => {
               return isEmail || isLogin || 'Введите корректный email или логин';
             },
           })}
+          onFocus={(el) => (el.target.placeholder = '')}
+          onBlur={(el) => (el.target.placeholder = 'Email или login')}
         />
-        {errors.authString && (
-          <p className={styles['login__error']}>{errors.authString.message}</p>
-        )}
+
         <input
           type="password"
           placeholder="Пароль"
-          className={styles['login__inp']}
+          className={`${styles['login__inp']} ${errors.password && styles['field__error']}`}
           tabIndex={1}
           {...register('password', {
             required: 'Заполните пароль',
@@ -115,19 +116,18 @@ const Login = () => {
               message: 'Пароль должен содержать больше 8 символов',
             },
             maxLength: {
-              value: 50,
+              value: 20,
               message: 'Пароль не стоит делать таким большим',
             },
+            pattern: /^[a-zA-Z0-9!@#$%^&*()_+-]+$/,
           })}
+          onFocus={(el) => (el.target.placeholder = '')}
+          onBlur={(el) => (el.target.placeholder = 'Пароль')}
         />
-        {errors.password && (
-          <p className={styles['login__error']}>{errors.password.message}</p>
-        )}
         <button
           type="submit"
           className={`${styles['login__btn']} ${styles['login__btn-login']}`}
           tabIndex={2}
-          disabled={!isValid}
         >
           Log in
         </button>

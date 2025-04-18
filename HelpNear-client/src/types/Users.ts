@@ -4,10 +4,11 @@ export type User = {
   id: number;
   login: string;
   password: string;
-  full_name: string;
+  fullName: string;
   email: string;
   address: string;
-  contact_number: string;
+  contactNumber: string;
+  birthDate: string;
   role: ROLES;
   avatar?: string;
 };

@@ -25,9 +25,9 @@ const Registration = () => {
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { errors, isValid },
     reset,
-  } = useForm<RegistrationData>();
+  } = useForm<RegistrationData>({ mode: 'onBlur' });
 
   const { mutate: submitRegister } = useMutation({
     mutationFn: async (data: RegistrationData) => {
@@ -75,6 +75,7 @@ const Registration = () => {
   });
 
   const onSubmit: SubmitHandler<RegistrationData> = async (data) => {
+    console.log(data);
     await submitRegister(data);
     reset();
   };
@@ -91,35 +92,38 @@ const Registration = () => {
             <input
               type="email"
               placeholder="Email"
-              className={`${styles['registration__inp']} ${styles['registration__inp-email']}`}
+              className={`${styles['registration__inp']} ${styles['registration__inp-email']} ${errors.email && styles['field__error']}`}
               tabIndex={0}
               {...register('email', {
-                // required: true,
-                // minLength: {
-                //   value: 9,
-                //   message: 'Не верный email',
-                // },
-                // maxLength: 50,
-                // pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                required: true,
+                minLength: {
+                  value: 9,
+                  message: 'Не верный email',
+                },
+                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
               })}
+              onFocus={(el) => (el.target.placeholder = '')}
+              onBlur={(el) => (el.target.placeholder = 'Email')}
             />
             <input
               placeholder="login"
-              className={styles['registration__inp']}
+              className={`${styles['registration__inp']} ${errors.login && styles['field__error']}`}
               {...register('login', {
-                // required: 'Заполните поле логина',
-                // minLength: {
-                //   value: 8,
-                //   message: 'Логин должен содержать больше 5 символов',
-                // },
-                // maxLength: 30,
-                // pattern: /^[a-zA-Z0-9]+$/,
+                required: 'Заполните поле логина',
+                minLength: {
+                  value: 8,
+                  message: 'Логин должен содержать больше 5 символов',
+                },
+                maxLength: 30,
+                pattern: /^[a-zA-Z0-9]+$/,
               })}
+              onFocus={(el) => (el.target.placeholder = '')}
+              onBlur={(el) => (el.target.placeholder = 'login')}
             />
             <input
               type="password"
               placeholder="Пароль"
-              className={styles['registration__inp']}
+              className={`${styles['registration__inp']} ${errors.password && styles['field__error']}`}
               tabIndex={1}
               {...register('password', {
                 // required: 'Заполните пароль',
@@ -133,12 +137,13 @@ const Registration = () => {
                 // },
                 // pattern: /^[a-zA-Z0-9!@#$%^&*()_+-]+$/,
               })}
+              onFocus={(el) => (el.target.placeholder = '')}
+              onBlur={(el) => (el.target.placeholder = 'Пароль')}
             />
           </>
         )}
 
         <button
-          type='button'
           onClick={() => setPage((prev) => !prev)}
           className={`${styles['registration__btn']} ${styles['registration__btn-return']}`}
         >
@@ -152,31 +157,50 @@ const Registration = () => {
               placeholder="Ваше полное имя"
               className={`${styles['registration__inp']} ${styles['registration__inp-email']}`}
               {...register('full_name', {
-                // required: 'Заполните поля имени',
-                // minLength: {
-                //   value: 5,
-                //   message: 'Имя должно быть 5 символов',
-                // },
-                // maxLength: 50,
-                // pattern: /^[a-zA-Zа-яА-ЯёЁ]+$/,
+                required: 'Заполните поля имени',
+                minLength: {
+                  value: 5,
+                  message: 'Имя должно быть 5 символов',
+                },
+                maxLength: 50,
+                pattern: /^[a-zA-Zа-яА-ЯёЁ]+$/,
               })}
+              onFocus={(el) => (el.target.placeholder = '')}
+              onBlur={(el) => (el.target.placeholder = 'Ваше полное имя')}
             />
             <input
               type="text"
               placeholder="Адрес"
-              className={styles['registration__inp']}
+              className={`${styles['registration__inp']} ${errors.address && styles['field__error']}`}
               {...register('address', {
                 // required: 'Заполните поле адреса',
                 // minLength: 5,
                 // maxLength: 70,
                 // pattern: /^[a-zA-Zа-яА-ЯёЁ]+$/,
               })}
+              onFocus={(el) => (el.target.placeholder = '')}
+              onBlur={(el) => (el.target.placeholder = 'Адрес')}
             />
             <input
               type="text"
-              placeholder="tel"
-              className={styles['registration__inp']}
-              {...register('contact_number')}
+              placeholder="Телефон: 37529653948"
+              className={`${styles['registration__inp']} ${errors.contactNumber && styles['field__error']}`}
+              {...register('contactNumber', {
+                required: true,
+                pattern: /^[0-9]+$/,
+              })}
+              onFocus={(el) => (el.target.placeholder = '')}
+              onBlur={(el) => (el.target.placeholder = 'Телефон')}
+            />
+            <input
+              type="date"
+              placeholder="Дата рождения"
+              className={`${styles['registration__inp']} ${styles['registration__inp-email']} ${errors.birthDate && styles['field__error']}`}
+              {...register('birthDate', {
+                required: true,
+              })}
+              onFocus={(el) => (el.target.placeholder = '')}
+              onBlur={(el) => (el.target.placeholder = 'Дата рождения')}
             />
             {/* <label htmlFor="avatar" className={styles['registration__avatar']}>
               <AvatarPhoto />
@@ -191,7 +215,7 @@ const Registration = () => {
               type="submit"
               className={`${styles['registration__btn']} ${styles['registration__btn-join']}`}
               tabIndex={2}
-              disabled={!isValid}
+              disabled={isValid}
             >
               Присоединится
             </button>
