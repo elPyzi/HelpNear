@@ -5,14 +5,10 @@
   .login__form {
     @include mixin.auth-form;
 
-    .login__error {
-      @include mixin.auth-error;
-    }
-
     .login__title {
-      @include mixin.auth-title;
       grid-column: span 2;
       text-align: center;
+      @include mixin.auth-title;
     }
 
     .login__inp {
@@ -52,5 +48,9 @@
 
   .return {
     @include mixin.auth-return;
+  }
+
+  .field__error {
+    border-bottom: 1px solid #d63031 !important;
   }
 }
