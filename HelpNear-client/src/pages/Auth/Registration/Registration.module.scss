@@ -33,31 +33,9 @@
       @include mixin.auth-btn;
     }
 
-    .registration__btn-join {
-      padding: 10px 70px;
-      margin: 30px 0 20px 0;
-      background-color: var(--dark-color);
-      border-radius: 25px;
-      transition: background-color 0.3s;
-      grid-column: 1 / span 2;
-      justify-self: center;
-      grid-row: 6;
-
-      @media screen and (min-width: 768px) {
-        grid-row: 5;
-      }
-
-      &:hover {
-        background-color: var(--secondary-color);
-      }
-
-      &:disabled {
-        background-color: var(--not-accent-color);
-      }
-    }
-
     .registration__avatar {
-      grid-row: 5;
+      position: relative;
+      grid-row: 6;
       margin-top: 20px;
       grid-column: 1 / span 2;
       justify-self: center;
@@ -66,10 +44,15 @@
       border-radius: 50%;
 
       @media screen and (min-width: 768px) {
-        grid-row: 4;
+        grid-row: 5;
+        width: 64px;
+        height: 64px;
       }
 
       .registration__avatar-inp {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -78,16 +61,42 @@
     }
   }
 
-  .registration__btn-return {
+  .registration__btn-join {
+    padding: 10px 70px;
+    margin: 30px 0 20px 0;
+    background-color: var(--dark-color);
+    border-radius: 25px;
+    transition: background-color 0.3s;
     grid-column: 1 / span 2;
+    justify-self: center;
     grid-row: 7;
 
     @media screen and (min-width: 768px) {
       grid-row: 6;
     }
+
+    &:hover {
+      background-color: var(--secondary-color);
+    }
+
+    &:disabled {
+      background-color: var(--not-accent-color);
+    }
+  }
+
+  .registration__btn-return {
+    grid-column: 1 / span 2;
+    grid-row: 8;
+
+    @media screen and (min-width: 768px) {
+      grid-row: 7;
+    }
   }
 
   .return {
     @include mixin.auth-return;
+  }
+  .field__error {
+    border-bottom: 1px solid #d63031 !important;
   }
 }
