@@ -46,6 +46,10 @@ public class Users {
     @JoinColumn(name = "fk_user_role", referencedColumnName = "id", nullable = false)
     private Roles role;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_problem", referencedColumnName = "id")
+    private Problem problem;
+
     public void setBirthDateFromString(String dateString) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");

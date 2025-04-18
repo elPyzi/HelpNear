@@ -1,9 +1,6 @@
 package com.invocation.server.controller;
 
-import com.invocation.server.dto.RequestLoginUserDto;
-import com.invocation.server.dto.RequestRegistrationUserDto;
-import com.invocation.server.dto.ResponceErrorServerDto;
-import com.invocation.server.dto.ResponseLoginUserDto;
+import com.invocation.server.dto.*;
 import com.invocation.server.service.AuthService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,12 +17,14 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/auth/register")
-    public ResponseEntity<ResponceErrorServerDto> register(@RequestBody RequestRegistrationUserDto reg) {
+    public ResponseEntity<ResponceErrorServerDto> register(@RequestBody RequestRegistrationDto wrapper) {
+        System.out.println("Received wrapper: " + wrapper);
+        RegistrationUserDto reg = wrapper.getData();
+        System.out.println("Extracted data: " + reg);
         ResponceErrorServerDto response = authService.register(reg);
         if (response.getErrorCode() == 0) {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        }
-        else {
+        } else {
             return ResponseEntity.status(HttpStatus.valueOf(response.getErrorCode())).body(response);
         }
     }

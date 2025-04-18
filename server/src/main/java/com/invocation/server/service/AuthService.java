@@ -1,7 +1,7 @@
 package com.invocation.server.service;
 
 import com.invocation.server.dto.RequestLoginUserDto;
-import com.invocation.server.dto.RequestRegistrationUserDto;
+import com.invocation.server.dto.RegistrationUserDto;
 import com.invocation.server.dto.ResponceErrorServerDto;
 import com.invocation.server.dto.ResponseLoginUserDto;
 import com.invocation.server.entity.Roles;
@@ -27,7 +27,7 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public ResponceErrorServerDto register(RequestRegistrationUserDto registrationRequest) {
+    public ResponceErrorServerDto register(RegistrationUserDto registrationRequest) {
         ResponceErrorServerDto response = new ResponceErrorServerDto();
         Optional<Roles> result = rolesRepo.findByRoleName("CITIZEN");
 
@@ -41,12 +41,14 @@ public class AuthService {
         user.setEmail(registrationRequest.getEmail());
         user.setRole(result.get());
         user.setLogin(registrationRequest.getLogin());
-        user.setFullName(registrationRequest.getFull_name());
-        user.setBirthDateFromString(registrationRequest.getBirth_date());
-        user.setContactNumber(registrationRequest.getContact_number());
+        user.setFullName(registrationRequest.getFullName());
+        user.setBirthDateFromString("22.10.2004"); //registrationRequest.getBirth_date()
+        user.setContactNumber(registrationRequest.getContactNumber());
         user.setAddress(registrationRequest.getAddress());
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
         user.setAvatar(null);
+        user.setProblem(null);
+        System.out.println(user);
 
         try {
             usersRepo.save(user);
@@ -67,12 +69,12 @@ public class AuthService {
         ResponceErrorServerDto response = new ResponceErrorServerDto();
         try {
             Users user = new Users();
-            if (loginRequest.getLogin() == null) {
-                user = usersRepo.findByEmail(loginRequest.getEmail())
+            if (loginRequest.getAuthString().contains("@")) {
+                user = usersRepo.findByEmail(loginRequest.getAuthString())
                         .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
             }
-            else if (loginRequest.getEmail() == null){
-                user = usersRepo.findByLogin(loginRequest.getLogin())
+            else{
+                user = usersRepo.findByLogin(loginRequest.getAuthString())
                         .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
             }
 

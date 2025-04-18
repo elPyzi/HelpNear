@@ -10,9 +10,9 @@
     }
 
     .login__title {
-      @include mixin.auth-title;
       grid-column: span 2;
       text-align: center;
+      @include mixin.auth-title;
     }
 
     .login__inp {

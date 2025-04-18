@@ -94,26 +94,26 @@ const Registration = () => {
               className={`${styles['registration__inp']} ${styles['registration__inp-email']}`}
               tabIndex={0}
               {...register('email', {
-                required: true,
-                minLength: {
-                  value: 9,
-                  message: 'Не верный email',
-                },
-                maxLength: 50,
-                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                // required: true,
+                // minLength: {
+                //   value: 9,
+                //   message: 'Не верный email',
+                // },
+                // maxLength: 50,
+                // pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
               })}
             />
             <input
               placeholder="login"
               className={styles['registration__inp']}
               {...register('login', {
-                required: 'Заполните поле логина',
-                minLength: {
-                  value: 8,
-                  message: 'Логин должен содержать больше 5 символов',
-                },
-                maxLength: 30,
-                pattern: /^[a-zA-Z0-9]+$/,
+                // required: 'Заполните поле логина',
+                // minLength: {
+                //   value: 8,
+                //   message: 'Логин должен содержать больше 5 символов',
+                // },
+                // maxLength: 30,
+                // pattern: /^[a-zA-Z0-9]+$/,
               })}
             />
             <input
@@ -122,22 +122,23 @@ const Registration = () => {
               className={styles['registration__inp']}
               tabIndex={1}
               {...register('password', {
-                required: 'Заполните пароль',
-                minLength: {
-                  value: 8,
-                  message: 'Пароль должен содержать больше 8 символов',
-                },
-                maxLength: {
-                  value: 50,
-                  message: 'Пароль не стоит делать таким большим',
-                },
-                pattern: /^[a-zA-Z0-9!@#$%^&*()_+-]+$/,
+                // required: 'Заполните пароль',
+                // minLength: {
+                //   value: 8,
+                //   message: 'Пароль должен содержать больше 8 символов',
+                // },
+                // maxLength: {
+                //   value: 50,
+                //   message: 'Пароль не стоит делать таким большим',
+                // },
+                // pattern: /^[a-zA-Z0-9!@#$%^&*()_+-]+$/,
               })}
             />
           </>
         )}
 
         <button
+          type='button'
           onClick={() => setPage((prev) => !prev)}
           className={`${styles['registration__btn']} ${styles['registration__btn-return']}`}
         >
@@ -151,13 +152,13 @@ const Registration = () => {
               placeholder="Ваше полное имя"
               className={`${styles['registration__inp']} ${styles['registration__inp-email']}`}
               {...register('full_name', {
-                required: 'Заполните поля имени',
-                minLength: {
-                  value: 5,
-                  message: 'Имя должно быть 5 символов',
-                },
-                maxLength: 50,
-                pattern: /^[a-zA-Zа-яА-ЯёЁ]+$/,
+                // required: 'Заполните поля имени',
+                // minLength: {
+                //   value: 5,
+                //   message: 'Имя должно быть 5 символов',
+                // },
+                // maxLength: 50,
+                // pattern: /^[a-zA-Zа-яА-ЯёЁ]+$/,
               })}
             />
             <input
@@ -165,10 +166,10 @@ const Registration = () => {
               placeholder="Адрес"
               className={styles['registration__inp']}
               {...register('address', {
-                required: 'Заполните поле адреса',
-                minLength: 5,
-                maxLength: 70,
-                pattern: /^[a-zA-Zа-яА-ЯёЁ]+$/,
+                // required: 'Заполните поле адреса',
+                // minLength: 5,
+                // maxLength: 70,
+                // pattern: /^[a-zA-Zа-яА-ЯёЁ]+$/,
               })}
             />
             <input
@@ -177,7 +178,7 @@ const Registration = () => {
               className={styles['registration__inp']}
               {...register('contact_number')}
             />
-            <label htmlFor="avatar" className={styles['registration__avatar']}>
+            {/* <label htmlFor="avatar" className={styles['registration__avatar']}>
               <AvatarPhoto />
               <input
                 type="file"
@@ -185,12 +186,12 @@ const Registration = () => {
                 className={styles['registration__avatar-inp']}
                 {...register('avatar')}
               />
-            </label>
+            </label> */}
             <button
               type="submit"
               className={`${styles['registration__btn']} ${styles['registration__btn-join']}`}
               tabIndex={2}
-              disabled={isValid}
+              disabled={!isValid}
             >
               Присоединится
             </button>
