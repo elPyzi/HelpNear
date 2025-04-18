@@ -52,10 +52,10 @@ public class Users {
 
     public void setBirthDateFromString(String dateString) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             this.birthDate = LocalDate.parse(dateString, formatter);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Неверный формат даты. Ожидается dd.MM.yyyy");
+            throw new IllegalArgumentException("Неверный формат даты. Ожидается yyyy-MM-dd");
         }
     }
 
@@ -63,7 +63,7 @@ public class Users {
         if (this.birthDate == null) {
             return null;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return this.birthDate.format(formatter);
     }
 }

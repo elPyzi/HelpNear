@@ -7,6 +7,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class RequestLoginUserDto {
-    private LoginUserDto data;
+public class RequestSetProfessionalDto {
+    int professionalId;
+    int userId;
 }

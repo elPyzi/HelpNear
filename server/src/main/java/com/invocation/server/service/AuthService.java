@@ -1,9 +1,6 @@
 package com.invocation.server.service;
 
-import com.invocation.server.dto.RequestLoginUserDto;
-import com.invocation.server.dto.RegistrationUserDto;
-import com.invocation.server.dto.ResponceErrorServerDto;
-import com.invocation.server.dto.ResponseLoginUserDto;
+import com.invocation.server.dto.*;
 import com.invocation.server.entity.Roles;
 import com.invocation.server.entity.Users;
 import com.invocation.server.repository.RolesRepo;
@@ -42,7 +39,7 @@ public class AuthService {
         user.setRole(result.get());
         user.setLogin(registrationRequest.getLogin());
         user.setFullName(registrationRequest.getFullName());
-        user.setBirthDateFromString("22.10.2004"); //registrationRequest.getBirth_date()
+        user.setBirthDateFromString(registrationRequest.getBirthDate());
         user.setContactNumber(registrationRequest.getContactNumber());
         user.setAddress(registrationRequest.getAddress());
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
@@ -65,7 +62,7 @@ public class AuthService {
         }
     }
 
-    public ResponceErrorServerDto login(RequestLoginUserDto loginRequest, ResponseLoginUserDto responseLoginUser) {
+    public ResponceErrorServerDto login(LoginUserDto loginRequest, ResponseLoginUserDto responseLoginUser) {
         ResponceErrorServerDto response = new ResponceErrorServerDto();
         try {
             Users user = new Users();

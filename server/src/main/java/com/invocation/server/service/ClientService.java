@@ -32,13 +32,13 @@ public class ClientService {
                     .orElseThrow(() -> new UsernameNotFoundException("Статус не найден"));
             ProblemProcessing problemProcessing = problemProcessingRepo.findById(1)
                     .orElseThrow(() -> new UsernameNotFoundException("Процесс не найден"));
-            SupportCenter supportCenter = supportCenterRepo.findById(request.getId_center())
+            SupportCenter supportCenter = supportCenterRepo.findById(request.getIdCenter())
                     .orElseThrow(() -> new UsernameNotFoundException("Центр не найден"));
 
             Problem problem = new Problem();
             problem.setTitle(request.getTitle());
             problem.setDescription(request.getDescription());
-            problem.setReceivedDateFromString(request.getReceived_date());
+            problem.setReceivedDateFromString(request.getReceivedDate());
             problem.setSupportCenter(supportCenter);
             problem.setProblemStatus(problemStatus);
             problem.setProblemProcessing(problemProcessing);

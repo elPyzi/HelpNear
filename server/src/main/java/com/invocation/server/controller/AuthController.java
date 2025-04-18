@@ -24,13 +24,15 @@ public class AuthController {
         ResponceErrorServerDto response = authService.register(reg);
         if (response.getErrorCode() == 0) {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        } else {
+        }
+        else {
             return ResponseEntity.status(HttpStatus.valueOf(response.getErrorCode())).body(response);
         }
     }
 
     @PostMapping("/auth/login")
-    public ResponseEntity<?> login(@RequestBody RequestLoginUserDto req, HttpServletResponse httpResponse) {
+    public ResponseEntity<?> login(@RequestBody RequestLoginUserDto wrapper, HttpServletResponse httpResponse) {
+        LoginUserDto req = wrapper.getData();
         ResponseLoginUserDto responseLoginUser = new ResponseLoginUserDto();
         ResponceErrorServerDto errorResponse = authService.login(req, responseLoginUser);
 

@@ -10,6 +10,6 @@ import lombok.Data;
 public class RequestMakeApplication {
     String title;
     String description;
-    String received_date;
-    int id_center;
+    String receivedDate;
+    int idCenter;
 }

@@ -191,4 +191,30 @@ public class GlobalsService {
             return new ResponceErrorServerDto(500);
         }
     }
+
+    public ResponceErrorServerDto getUsersCitizen(ResponceUsersCitizenDto responceUsersCitizenDto){
+        try {
+            List<Users> users = usersRepo.findByRoleId(1);
+            List<UsersCitizenDto> usersCitizenDtos = new ArrayList<>();
+            for(Users user : users){
+                UsersCitizenDto usersCitizenDto = new UsersCitizenDto();
+                usersCitizenDto.setId(user.getId());
+                usersCitizenDto.setLogin(user.getLogin());
+                usersCitizenDto.setEmail(user.getEmail());
+                usersCitizenDto.setFullName(user.getFullName());
+                usersCitizenDto.setAddress(user.getAddress());
+                usersCitizenDto.setRole(user.getRole().getRoleName());
+                usersCitizenDto.setBaned(user.getIsBanned());
+                usersCitizenDtos.add(usersCitizenDto);
+            }
+            responceUsersCitizenDto.setUsers(usersCitizenDtos);
+            return new ResponceErrorServerDto(200);
+        }
+        catch (UsernameNotFoundException e) {
+            return new ResponceErrorServerDto(401);
+        }
+        catch (Exception e) {
+            return new ResponceErrorServerDto(500);
+        }
+    }
 }
