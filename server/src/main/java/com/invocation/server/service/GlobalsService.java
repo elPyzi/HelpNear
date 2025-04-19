@@ -24,6 +24,8 @@ public class GlobalsService {
     private ProblemProcessingRepo problemProcessingRepo;
     @Autowired
     private ProblemRepo problemRepo;
+    @Autowired
+    private ClientRepo clientRepo;
 
     public ResponceErrorServerDto getAllProfessionals(ResponceProfessionalsDto responceProfessionalsDto) {
         try {

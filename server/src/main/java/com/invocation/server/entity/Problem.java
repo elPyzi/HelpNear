@@ -39,7 +39,7 @@ public class Problem {
 
     public void setReceivedDateFromString(String dateString) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             this.receivedDate = LocalDate.parse(dateString, formatter);
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Неверный формат даты. Ожидается dd.MM.yyyy");
@@ -50,7 +50,7 @@ public class Problem {
         if (this.receivedDate == null) {
             return null;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return this.receivedDate.format(formatter);
     }
 }
