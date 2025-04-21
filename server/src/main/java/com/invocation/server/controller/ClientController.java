@@ -1,6 +1,7 @@
 package com.invocation.server.controller;
 
 import com.invocation.server.dto.RequestMakeApplication;
+import com.invocation.server.dto.ResponceConclusionUserDto;
 import com.invocation.server.dto.ResponceErrorServerDto;
 import com.invocation.server.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(errorResponse);
     }
 
-//    @GetMapping("/conclusion")
-//    public ResponseEntity<?> getConclusion(Principal principal) {}
+    @GetMapping("/conclusion")
+    public ResponseEntity<?> getConclusion(Principal principal) {
+        ResponceConclusionUserDto responceConclusionUserDto = new ResponceConclusionUserDto();
+        ResponceErrorServerDto errorResponse = clientService.getConclusion(responceConclusionUserDto, principal.getName());
+        return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceConclusionUserDto.getConclusionUsers());
+    }
 }

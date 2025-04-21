@@ -1,12 +1,17 @@
 package com.invocation.server.service;
 
+import com.invocation.server.dto.ConclusionUserDto;
 import com.invocation.server.dto.RequestMakeApplication;
+import com.invocation.server.dto.ResponceConclusionUserDto;
 import com.invocation.server.dto.ResponceErrorServerDto;
 import com.invocation.server.entity.*;
 import com.invocation.server.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ClientService {
@@ -20,6 +25,8 @@ public class ClientService {
     private SupportCenterRepo supportCenterRepo;
     @Autowired
     private UsersRepo usersRepo;
+    @Autowired
+    private AppointmentRepo appointmentRepo;
 
     public ResponceErrorServerDto makeApplication(RequestMakeApplication request, String login) {
         try {
@@ -46,6 +53,37 @@ public class ClientService {
             user.setProblem(problem);
             usersRepo.save(user);
             return new ResponceErrorServerDto(200);
+        }
+        catch (Exception e) {
+            return new ResponceErrorServerDto(401);
+        }
+    }
+
+    public ResponceErrorServerDto getConclusion(ResponceConclusionUserDto responceConclusionUserDto, String login){
+        try {
+            Users user = usersRepo.findByLogin(login)
+                    .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+            List<Appointment> appointments = appointmentRepo.findByUserId(user.getId());
+            List<ConclusionUserDto> conclusionUserDtoList = new ArrayList<>();
+            for (Appointment appointment : appointments) {
+                Users userPro = usersRepo.findById(appointment.getProfessional().getUser().getId())
+                        .orElseThrow(() -> new UsernameNotFoundException("Профессионал не найден"));
+                ConclusionUserDto conclusionUserDto = new ConclusionUserDto();
+                conclusionUserDto.setTextInfo(appointment.getTextInfo());
+                conclusionUserDto.setTitle(appointment.getTitle());
+                conclusionUserDto.setDescription(appointment.getDescription());
+                ConclusionUserDto.Professional professionalDto = new ConclusionUserDto.Professional();
+                professionalDto.setEmail(userPro.getEmail());
+                professionalDto.setFullName(userPro.getFullName());
+                professionalDto.setContactNumber(userPro.getContactNumber());
+                conclusionUserDto.setProfessional(professionalDto);
+                conclusionUserDtoList.add(conclusionUserDto);
+            }
+            responceConclusionUserDto.setConclusionUsers(conclusionUserDtoList);
+            return new ResponceErrorServerDto(200);
+        }
+        catch (UsernameNotFoundException e) {
+            return new ResponceErrorServerDto(401);
         }
         catch (Exception e) {
             return new ResponceErrorServerDto(401);
