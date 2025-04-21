@@ -4,7 +4,6 @@ export const PAGE_CONFIG = {
   PASSWORD_RECOVERY: 'password-recovery',
   LOGIN: 'login',
   REGISTRATION: 'registration',
-  PROFESSIONAL: 'professionals',
   SUPPORT_CENTER: 'support-centers',
   ACCOUNT: 'account',
   PROFILE: 'profile',
