@@ -84,6 +84,7 @@ public class AuthService {
                 responseLoginUser.setBirth_date(user.getBirthDateAsString());
                 responseLoginUser.setContact_number(user.getContactNumber());
                 responseLoginUser.setAddress(user.getAddress());
+                responseLoginUser.setRole(user.getRole().getRoleName());
 
                 ResponseLoginUserDto.Token tokenData = new ResponseLoginUserDto.Token();
                 tokenData.setAccessToken(jwt);

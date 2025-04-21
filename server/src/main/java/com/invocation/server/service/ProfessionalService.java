@@ -1,17 +1,8 @@
 package com.invocation.server.service;
 
-import com.invocation.server.dto.ResponceErrorServerDto;
-import com.invocation.server.dto.ResponceUserProblemId;
-import com.invocation.server.dto.ResponceUsersProblemProfessionalDto;
-import com.invocation.server.dto.UsersProblemProfessionalDto;
-import com.invocation.server.entity.Client;
-import com.invocation.server.entity.Problem;
-import com.invocation.server.entity.Professional;
-import com.invocation.server.entity.Users;
-import com.invocation.server.repository.ClientRepo;
-import com.invocation.server.repository.ProblemRepo;
-import com.invocation.server.repository.ProfessionalRepo;
-import com.invocation.server.repository.UsersRepo;
+import com.invocation.server.dto.*;
+import com.invocation.server.entity.*;
+import com.invocation.server.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,6 +20,8 @@ public class ProfessionalService {
     private ProfessionalRepo profRepo;
     @Autowired
     private ProblemRepo problemRepo;
+    @Autowired
+    private AppointmentRepo appointmentRepo;
 
     public ResponceErrorServerDto getUsersProfessionalProblem(String login, ResponceUsersProblemProfessionalDto responceUsersProblemProfessionalDto){
         try {
@@ -77,6 +70,41 @@ public class ProfessionalService {
             responceUserProblemId.setReceivedDate(problem.getReceivedDateAsString());
             responceUserProblemId.setStatus(problem.getProblemStatus().getStatus());
             responceUserProblemId.setProcess(problem.getProblemProcessing().getProcess());
+            return new ResponceErrorServerDto(200);
+        }
+        catch (UsernameNotFoundException e) {
+            return new ResponceErrorServerDto(401);
+        }
+        catch (Exception e) {
+            return new ResponceErrorServerDto(401);
+        }
+    }
+
+    public ResponceErrorServerDto makeJudgment(RequestMakeJudgment requestMakeJudgment, String professional){
+        try{
+            Users userPro = usersRepo.findByLogin(professional)
+                    .orElseThrow(() -> new UsernameNotFoundException("Пользователь профессионал не найден"));
+            Users user = usersRepo.findById(requestMakeJudgment.getUserId())
+                    .orElseThrow(() -> new UsernameNotFoundException("Обычный пользователь не найден"));
+            Professional pro = profRepo.findByUserId(userPro.getId())
+                    .orElseThrow(() -> new UsernameNotFoundException("Профессионал не найден"));
+            Problem problem = problemRepo.findById(user.getProblem().getId())
+                    .orElseThrow(() -> new UsernameNotFoundException("Проблема пользователя не найдена"));
+            Client client = clientRepo.findByUserId(user.getId())
+                    .orElseThrow(() -> new UsernameNotFoundException("Запись  пользователем не найдена"));
+
+            Appointment appointment = new Appointment();
+            appointment.setTextInfo(requestMakeJudgment.getTextInfo());
+            appointment.setUser(user);
+            appointment.setProfessional(pro);
+            appointment.setTitle(problem.getTitle());
+            appointment.setDescription(problem.getDescription());
+            appointmentRepo.save(appointment);
+
+            user.setProblem(null);
+            usersRepo.save(user);
+            problemRepo.delete(problem);
+            clientRepo.delete(client);
             return new ResponceErrorServerDto(200);
         }
         catch (UsernameNotFoundException e) {

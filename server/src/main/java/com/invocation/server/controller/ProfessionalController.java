@@ -1,5 +1,6 @@
 package com.invocation.server.controller;
 
+import com.invocation.server.dto.RequestMakeJudgment;
 import com.invocation.server.dto.ResponceErrorServerDto;
 import com.invocation.server.dto.ResponceUserProblemId;
 import com.invocation.server.dto.ResponceUsersProblemProfessionalDto;
@@ -31,8 +32,9 @@ public class ProfessionalController {
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceUserProblemId);
     }
 
-//    @PostMapping("/make-judgment")
-//    public ResponseEntity<?> makeJudgment() {
-//
-//    }
+    @PostMapping("/make-judgment")
+    public ResponseEntity<?> makeJudgment(@RequestBody RequestMakeJudgment requestMakeJudgment, Principal principal) {
+        ResponceErrorServerDto errorResponse = profService.makeJudgment(requestMakeJudgment, principal.getName());
+        return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(errorResponse);
+    }
 }

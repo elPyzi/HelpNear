@@ -6,10 +6,7 @@ import com.invocation.server.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -24,4 +21,7 @@ public class ClientController {
         ResponceErrorServerDto errorResponse = clientService.makeApplication(request, principal.getName());
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(errorResponse);
     }
+
+//    @GetMapping("/conclusion")
+//    public ResponseEntity<?> getConclusion(Principal principal) {}
 }

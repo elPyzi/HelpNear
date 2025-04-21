@@ -14,6 +14,7 @@ public class ResponseLoginUserDto {
     String birth_date;
     String contact_number;
     String address;
+    String role;
 
     @JsonIgnore
     private Token token;
