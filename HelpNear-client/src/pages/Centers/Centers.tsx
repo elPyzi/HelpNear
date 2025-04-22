@@ -33,6 +33,7 @@ const Centers = () => {
   } = useQuery({
     queryKey: ['centers'],
     queryFn: getCenters,
+    retry: false,
   });
 
   if (isLoading) {

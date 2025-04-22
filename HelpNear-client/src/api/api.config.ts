@@ -14,7 +14,7 @@ export const API_CONFIG = {
       REFUSE_PROBLEM: 'globals/refuse-problem',
       CHANGE_PRIORITY: 'globals/change-priority',
       GET_PROBLEMS: 'globals/get-problems',
-      GET_SUPPORT_CENTER: 'globals/get-center',
+      GET_SUPPORT_CENTER: 'globals/get-support-centers',
     },
     CLIENT: {
       BASE_URL: 'client/',
