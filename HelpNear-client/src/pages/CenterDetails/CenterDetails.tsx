@@ -41,6 +41,7 @@ const getCenterDetails = async (
 const CenterDetails = () => {
   const [isSubmissionModalOpen, setSubmissionModal] = useState<boolean>(false);
   const { id } = useParams();
+  console.log(typeof id, id);
 
   const {
     data: centerData,
@@ -49,7 +50,6 @@ const CenterDetails = () => {
   } = useQuery({
     queryKey: ['center', id],
     queryFn: () => getCenterDetails(id!),
-    enabled: !!id,
   });
 
   if (isLoading) return <Loading />;
