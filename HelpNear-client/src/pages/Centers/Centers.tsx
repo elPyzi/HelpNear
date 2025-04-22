@@ -4,14 +4,19 @@ import { Center } from '@/types/Centers';
 import CenterCard from '@/components/CenterCard/CenterCard';
 import Loading from '@/components/Loading/Loading';
 
+import { API_CONFIG } from '@/api/api.config';
+
 const getCenters = async (): Promise<Center[]> => {
-  const response = await fetch('/globals/get-support-centers', {
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-      Accept: 'application/json',
+  const response = await fetch(
+    `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.GLOBALS.GET_SUPPORT_CENTER}`,
+    {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+      },
     },
-  });
+  );
 
   if (!response.ok) {
     throw new Error('Failed to fetch centers');

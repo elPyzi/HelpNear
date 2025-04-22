@@ -87,16 +87,6 @@ const Header = () => {
         </NavLink>
         <div className={styles['header__links']}>
           <NavLink
-            to="support-centers"
-            className={({ isActive }) =>
-              isActive
-                ? `${styles['header__link']} ${styles['header__link--active']}`
-                : styles['header__link']
-            }
-          >
-            Центры
-          </NavLink>
-          <NavLink
             to={PAGE_CONFIG.HOME}
             className={({ isActive }) =>
               isActive
@@ -107,14 +97,14 @@ const Header = () => {
             Главная
           </NavLink>
           <NavLink
-            to={PAGE_CONFIG.PROFESSIONAL}
+            to="support-centers"
             className={({ isActive }) =>
               isActive
                 ? `${styles['header__link']} ${styles['header__link--active']}`
                 : styles['header__link']
             }
           >
-            Профессионалы
+            Центры
           </NavLink>
         </div>
         <NavLink

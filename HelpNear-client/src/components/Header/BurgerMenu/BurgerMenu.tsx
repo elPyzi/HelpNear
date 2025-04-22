@@ -96,19 +96,6 @@ const BurgerMenu = () => {
           Центры
         </NavLink>
         <NavLink
-          to={PAGE_CONFIG.PROFESSIONAL}
-          className={({ isActive }) =>
-            isActive
-              ? `${styles['burger-menu__link']} ${styles['burger-menu__link--active']}`
-              : `${styles['burger-menu__link']}`
-          }
-          ref={(el) => {
-            if (el) burgerMenuLinksRef.current[2] = el;
-          }}
-        >
-          Профессионалы
-        </NavLink>
-        <NavLink
           to={PAGE_CONFIG.ACCOUNT}
           className={({ isActive }) =>
             isActive
@@ -116,7 +103,7 @@ const BurgerMenu = () => {
               : `${styles['burger-menu__link']}`
           }
           ref={(el) => {
-            if (el) burgerMenuLinksRef.current[3] = el;
+            if (el) burgerMenuLinksRef.current[2] = el;
           }}
         >
           Профиль
