@@ -7,6 +7,7 @@ import CenterImg from '@images/center.jpeg';
 type CenterCardProps = Center;
 
 const CenterCard = ({
+  id,
   name,
   address,
   contact_number,
@@ -24,7 +25,7 @@ const CenterCard = ({
         <p className={styles['center__description']}>{address}</p>
         <p className={styles['center__description']}>{contact_number}</p>
         <p className={styles['center__description']}>{email}</p>
-        <Link to="" className={styles['center__more']}>
+        <Link to={`/center/${id}`} className={styles['center__more']}>
           Узнать больше
         </Link>
       </div>

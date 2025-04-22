@@ -4,12 +4,10 @@ import { lazy } from 'react';
 import { PAGE_CONFIG } from '@/config/page.config';
 
 // Импорты layouts
-
 import Layout from '@layouts/Layout';
 import AuthLayout from '@/layouts/Auth/AuthLayout';
 
 // Импорты компонентов
-
 import Home from '@pages/Home/Home';
 import ProtectedAuth from '@/router/ProtectedRoutes/ProtectedAuth';
 import Error from '@/pages/Errors/Error';
@@ -24,6 +22,7 @@ const PasswordRecovery = lazy(
 );
 const Users = lazy(() => import('@components/Account/Users/Users'));
 const Profile = lazy(() => import('@components/Account/Profile/Profile'));
+const CenterDetails = lazy(() => import('@pages/CenterDetails/CenterDetails'));
 
 export const routes: RouteObject[] = [
   {
@@ -37,6 +36,10 @@ export const routes: RouteObject[] = [
       {
         path: PAGE_CONFIG.SUPPORT_CENTER,
         element: <SupportCenters />,
+      },
+      {
+        path: `${PAGE_CONFIG.SUPPORT_CENTER}/:id`,
+        element: <CenterDetails />,
       },
     ],
   },

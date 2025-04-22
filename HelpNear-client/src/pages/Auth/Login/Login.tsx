@@ -40,7 +40,7 @@ const Login = () => {
               'Content-type': 'application/json',
               Accept: 'application/json',
             },
-            body: JSON.stringify({ data }),
+            body: JSON.stringify(data),
           },
         );
 

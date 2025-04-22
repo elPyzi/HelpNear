@@ -8,6 +8,9 @@ const getCenters = async (): Promise<Center[]> => {
   const response = await fetch('/globals/get-support-centers', {
     method: 'GET',
     credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+    },
   });
 
   if (!response.ok) {
