@@ -39,7 +39,7 @@ const Registration = () => {
             headers: {
               'Content-type': 'application/json',
             },
-            body: JSON.stringify({ data }),
+            body: JSON.stringify(data),
           },
         );
 
@@ -156,7 +156,7 @@ const Registration = () => {
               type="text"
               placeholder="Ваше полное имя"
               className={`${styles['registration__inp']} ${styles['registration__inp-email']}`}
-              {...register('full_name', {
+              {...register('fullName', {
                 required: 'Заполните поля имени',
                 minLength: {
                   value: 5,

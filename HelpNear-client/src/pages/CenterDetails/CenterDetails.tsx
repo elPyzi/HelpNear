@@ -20,8 +20,7 @@ const getCenterDetails = async (
   professionals: Professional[];
 }> => {
   const response = await fetch(
-    `${API_CONFIG.BASE_URL}
-    ${API_CONFIG.ENDPOINTS.GLOBALS.GET_SUPPORT_CENTER}/${centerId}`,
+    `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.GLOBALS.GET_SUPPORT_CENTER}/${centerId}`,
     {
       method: 'GET',
       credentials: 'include',
