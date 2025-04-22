@@ -219,4 +219,36 @@ public class GlobalsService {
             return new ResponceErrorServerDto(500);
         }
     }
+
+    public ResponceErrorServerDto getCenterProfessional(int id, ResponceCenterProfessional responceCenterProfessional){
+        try{
+            SupportCenter supportCenter = supportCenterRepo.findById(id)
+                    .orElseThrow(() -> new UsernameNotFoundException("Центр не найден"));
+            List<Professional> professionals = profRepo.findByCenterId(supportCenter.getId());
+            List<ResponceCenterProfessional.Professional> professionalList = new ArrayList<>();
+            ResponceCenterProfessional.Center center = new ResponceCenterProfessional.Center();
+            center.setId(supportCenter.getId());
+            center.setName(supportCenter.getName());
+            center.setEmail(supportCenter.getEmail());
+            center.setAddress(supportCenter.getAddress());
+            center.setContactNumber(supportCenter.getContactNumber());
+            center.setRating(supportCenter.getAverageRating());
+            responceCenterProfessional.setCenter(center);
+            for (Professional professional : professionals) {
+                ResponceCenterProfessional.Professional professionalDto = new ResponceCenterProfessional.Professional();
+                professionalDto.setFullName(professional.getUser().getFullName());
+                professionalDto.setInfo(professional.getInfo());
+                professionalDto.setRating(professional.getAverageRating());
+                professionalList.add(professionalDto);
+            }
+            responceCenterProfessional.setProfessionals(professionalList);
+            return new ResponceErrorServerDto(200);
+        }
+        catch (UsernameNotFoundException e) {
+            return new ResponceErrorServerDto(401);
+        }
+        catch (Exception e) {
+            return new ResponceErrorServerDto(500);
+        }
+    }
 }

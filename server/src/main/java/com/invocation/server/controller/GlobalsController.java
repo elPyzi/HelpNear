@@ -1,9 +1,6 @@
 package com.invocation.server.controller;
 
-import com.invocation.server.dto.ResponceErrorServerDto;
-import com.invocation.server.dto.ResponceProfessionalsDto;
-import com.invocation.server.dto.ResponceSupportCenterDto;
-import com.invocation.server.dto.ResponceUsersCitizenDto;
+import com.invocation.server.dto.*;
 import com.invocation.server.service.GlobalsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,5 +55,12 @@ public class GlobalsController {
         ResponceUsersCitizenDto responceUsersCitizenDto = new ResponceUsersCitizenDto();
         ResponceErrorServerDto errorResponse = globalsService.getUsersCitizen(responceUsersCitizenDto);
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceUsersCitizenDto.getUsers());
+    }
+
+    @GetMapping("/get-center/{id}")
+    public ResponseEntity<?> getCenterProfessional(@PathVariable int id) {
+        ResponceCenterProfessional responceCenterProfessional = new ResponceCenterProfessional();
+        ResponceErrorServerDto errorResponse = globalsService.getCenterProfessional(id, responceCenterProfessional);
+        return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceCenterProfessional);
     }
 }

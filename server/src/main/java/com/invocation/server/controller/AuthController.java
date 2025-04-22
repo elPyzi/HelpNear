@@ -17,10 +17,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/auth/register")
-    public ResponseEntity<ResponceErrorServerDto> register(@RequestBody RequestRegistrationDto wrapper) {
-        System.out.println("Received wrapper: " + wrapper);
-        RegistrationUserDto reg = wrapper.getData();
-        System.out.println("Extracted data: " + reg);
+    public ResponseEntity<ResponceErrorServerDto> register(@RequestBody RegistrationUserDto reg) {
         ResponceErrorServerDto response = authService.register(reg);
         if (response.getErrorCode() == 0) {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -31,8 +28,7 @@ public class AuthController {
     }
 
     @PostMapping("/auth/login")
-    public ResponseEntity<?> login(@RequestBody RequestLoginUserDto wrapper, HttpServletResponse httpResponse) {
-        LoginUserDto req = wrapper.getData();
+    public ResponseEntity<?> login(@RequestBody LoginUserDto req, HttpServletResponse httpResponse) {
         ResponseLoginUserDto responseLoginUser = new ResponseLoginUserDto();
         ResponceErrorServerDto errorResponse = authService.login(req, responseLoginUser);
 
