@@ -24,11 +24,11 @@ const submitProblem = async (data: ProblemSubmission) => {
     `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CLIENT.MAKE_APPLICATION}`,
     {
       method: 'POST',
+      credentials: 'include',
       headers: {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
       body: JSON.stringify(data),
     },
   );

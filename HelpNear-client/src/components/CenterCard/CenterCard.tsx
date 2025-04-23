@@ -28,7 +28,7 @@ const CenterCard = ({
         <p className={styles['center__description']}>{contact_number}</p>
         <p className={styles['center__description']}>{email}</p>
         <Link
-          to={`${PAGE_CONFIG.SUPPORT_CENTER}/${id}`}
+          to={`/${PAGE_CONFIG.SUPPORT_CENTER}/${id}`}
           className={styles['center__more']}
         >
           Узнать больше

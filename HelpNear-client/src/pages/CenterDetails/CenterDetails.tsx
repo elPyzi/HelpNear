@@ -20,8 +20,7 @@ const getCenterDetails = async (
   professionals: Professional[];
 }> => {
   const response = await fetch(
-    `${API_CONFIG.BASE_URL}
-    ${API_CONFIG.ENDPOINTS.GLOBALS.GET_SUPPORT_CENTER}/${centerId}`,
+    `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.GLOBALS.GET_SUPPORT_CENTER}/${centerId}`,
     {
       method: 'GET',
       credentials: 'include',
@@ -42,7 +41,6 @@ const CenterDetails = () => {
   const [isSubmissionModalOpen, setSubmissionModal] = useState<boolean>(false);
   const { id } = useParams();
   console.log(typeof id, id);
-
   const {
     data: centerData,
     isLoading,
@@ -50,6 +48,7 @@ const CenterDetails = () => {
   } = useQuery({
     queryKey: ['center', id],
     queryFn: () => getCenterDetails(id!),
+    enabled: !!id,
   });
 
   if (isLoading) return <Loading />;
