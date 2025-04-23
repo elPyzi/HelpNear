@@ -20,7 +20,7 @@ type ProblemSubmission = {
 // yyyy-MM-dd
 const getCurrentDate = () => {
   const date = new Date();
-  const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+  const currentDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   console.log(currentDate);
   return currentDate;
 };
