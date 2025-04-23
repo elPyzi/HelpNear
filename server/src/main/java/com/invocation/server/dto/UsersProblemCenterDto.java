@@ -8,10 +8,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class UsersProblemCenterDto {
-    int userProblemId;
-    String login;
-    String email;
+    int userId;
+    String fullName;
     String title;
     String description;
-    String problemData;
 }
