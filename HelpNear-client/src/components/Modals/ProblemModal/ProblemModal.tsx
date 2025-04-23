@@ -17,9 +17,18 @@ type ProblemSubmission = {
   description: string;
   center_id: number;
 };
+// yyyy-MM-dd
+const getCurrentDate = () => {
+  const date = new Date();
+  const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+  console.log(currentDate);
+  return currentDate;
+};
 
 const submitProblem = async (data: ProblemSubmission) => {
   const accessToken = Cookies.get('accessToken');
+  const receivedDate = getCurrentDate();
+  const RequestData = { ...data, receivedDate };
   const response = await fetch(
     `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.CLIENT.MAKE_APPLICATION}`,
     {
@@ -29,7 +38,7 @@ const submitProblem = async (data: ProblemSubmission) => {
         'Content-Type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify(data),
+      body: JSON.stringify(RequestData),
     },
   );
 

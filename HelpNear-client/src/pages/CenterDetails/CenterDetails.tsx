@@ -49,6 +49,7 @@ const CenterDetails = () => {
   } = useQuery({
     queryKey: ['center', id],
     queryFn: () => getCenterDetails(id!),
+    retry: false,
   });
 
   if (isLoading) return <Loading />;
@@ -60,20 +61,32 @@ const CenterDetails = () => {
   return (
     <div className="container">
       <div className={styles['center-details']}>
-        <div className={styles['center-details__info']}>
-          <img src={CenterImg} alt="" />
-          <h2 className={styles['center-details__name']}>{center.name}</h2>
-          <div className={styles['center-details__rating']}>
-            {center.rating} <StarIcon />
+        <div className={styles['center-details__center']}>
+          <img
+            src={CenterImg}
+            alt=""
+            className={styles['center-details__center']}
+          />
+          <div className={styles['center-details__info']}>
+            <h2 className={styles['center-details__name']}>{center.name}</h2>
+            <div className={styles['center-details__rating']}>
+              {center.rating} <StarIcon />
+            </div>
+            <p className={styles['center-details__address']}>
+              {center.address}
+            </p>
+            <p className={styles['center-details__contact']}>
+              {center.contact_number}
+            </p>
+            <p className={styles['center-details__email']}>{center.email}</p>
+            <button
+              type="button"
+              className={styles['center-details__open-submission']}
+              onClick={() => setSubmissionModal(true)}
+            >
+              Оставить заявку в центр
+            </button>
           </div>
-          <p className={styles['center-details__address']}>{center.address}</p>
-          <p className={styles['center-details__contact']}>
-            {center.contact_number}
-          </p>
-          <p className={styles['center-details__email']}>{center.email}</p>
-          <button type="button" onClick={() => setSubmissionModal(true)}>
-            Оставить заявку в центр
-          </button>
           {isSubmissionModalOpen && (
             <ProblemModal centerId={center.id} onClose={setSubmissionModal} />
           )}
