@@ -1,30 +1,42 @@
+@use '../../assets/styles/mixins/auth.mixin.scss' as mixin;
+
 .center-details {
   padding: 40px 0;
 
-  .center-details__info {
-  }
-
-  &__name {
-    font-size: 32px;
-    color: var(--secondary-color);
-    margin-bottom: 20px;
-  }
-
-  &__rating {
+  .center-details__center {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 24px;
-    color: var(--secondary-color);
-    margin-bottom: 20px;
-  }
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
 
-  &__address,
-  &__contact,
-  &__email {
-    font-size: 18px;
-    margin-bottom: 10px;
+    .center-details__info {
+      .center-detail__name {
+        font-size: 32px;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+      }
+
+      .center-detail__rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-size: 24px;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+      }
+
+      .center-detail__address,
+      .center-detail__contact,
+      .center-detail__email {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .center-details__open-submission {
+        @include mixin.auth-return;
+      }
+    }
   }
 
   &__professionals {
