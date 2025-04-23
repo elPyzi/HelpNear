@@ -19,6 +19,8 @@ public class ClientController {
 
     @PostMapping("/make-application")
     public ResponseEntity<?> application(@RequestBody RequestMakeApplication request, Principal principal) {
+        System.out.println(principal.getName());
+        System.out.println(request);
         ResponceErrorServerDto errorResponse = clientService.makeApplication(request, principal.getName());
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(errorResponse);
     }

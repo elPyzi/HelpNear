@@ -57,7 +57,7 @@ public class GlobalsController {
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceUsersCitizenDto.getUsers());
     }
 
-    @GetMapping("/get-center/{id}")
+    @GetMapping("/get-support-centers/{id}")
     public ResponseEntity<?> getCenterProfessional(@PathVariable int id) {
         ResponceCenterProfessional responceCenterProfessional = new ResponceCenterProfessional();
         ResponceErrorServerDto errorResponse = globalsService.getCenterProfessional(id, responceCenterProfessional);

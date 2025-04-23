@@ -45,7 +45,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         else if (authorizationHeader.length() > 6) {
+            System.out.println("Сюда");
             getToken = authorizationHeader.substring(7);
+            System.out.println(getToken);
         }
         else if (authorizationHeader.length() == 6) {
             sendResponse(response, HttpStatus.UNAUTHORIZED.value(), new ResponceErrorServerDto(401));
@@ -92,6 +94,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         );
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, null, authorities);
         SecurityContextHolder.getContext().setAuthentication(authToken);
+        System.out.println("sadfasdasd");
+        System.out.println(role + " " + email);
         filterChain.doFilter(request, response);
     }
 
