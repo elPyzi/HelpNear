@@ -37,13 +37,7 @@ public class GlobalsService {
 
                 ProfessionalsDto professionalsDto = new ProfessionalsDto();
                 professionalsDto.setId(user.getId());
-                professionalsDto.setEmail(user.getEmail());
                 professionalsDto.setFull_name(user.getFullName());
-                professionalsDto.setContact_number(user.getContactNumber());
-                professionalsDto.setInfo(professional.getInfo());
-                professionalsDto.setFk_center(professional.getCenter().getName());
-                professionalsDto.setProfessionals_rating(professional.getAverageRating());
-                professionalsDto.setCenter_rating(professional.getCenter().getAverageRating());
                 professionalDto.add(professionalsDto);
             }
             responceProfessionalsDto.setProfessionals(professionalDto);
@@ -86,13 +80,7 @@ public class GlobalsService {
                         .orElseThrow(() -> new UsernameNotFoundException("Профессионал не найден"));
 
                 ProfessionalsDto professionalsDto = new ProfessionalsDto();
-                professionalsDto.setEmail(user.getEmail());
                 professionalsDto.setFull_name(user.getFullName());
-                professionalsDto.setContact_number(user.getContactNumber());
-                professionalsDto.setInfo(professional.getInfo());
-                professionalsDto.setFk_center(professional.getCenter().getName());
-                professionalsDto.setProfessionals_rating(professional.getAverageRating());
-                professionalsDto.setCenter_rating(professional.getCenter().getAverageRating());
                 professionalDto.add(professionalsDto);
             }
 
@@ -106,13 +94,7 @@ public class GlobalsService {
                             .orElseThrow(() -> new UsernameNotFoundException("Профессионал не найден"));
 
                     ProfessionalsDto professionalsDto = new ProfessionalsDto();
-                    professionalsDto.setEmail(user.getEmail());
                     professionalsDto.setFull_name(user.getFullName());
-                    professionalsDto.setContact_number(user.getContactNumber());
-                    professionalsDto.setInfo(professional.getInfo());
-                    professionalsDto.setFk_center(professional.getCenter().getName());
-                    professionalsDto.setProfessionals_rating(professional.getAverageRating());
-                    professionalsDto.setCenter_rating(professional.getCenter().getAverageRating());
                     professionalDto.add(professionalsDto);
                 }
             }

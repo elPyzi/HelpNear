@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class UsersProblemCenterDto {
     int userId;
+    String email;
     String fullName;
     String title;
     String description;
