@@ -15,7 +15,7 @@ type Problems = {
 };
 
 const ProfessionalProblem = () => {
-  const [selectedProblemId, setSelectedProblemId] = useState<number>(0);
+  const [selectedUser, setSelectedUser] = useState<number>();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: problems, isLoading } = useQuery<Problems[]>({
@@ -45,7 +45,7 @@ const ProfessionalProblem = () => {
 
   const handleAssignTreatment = (userId: number) => {
     console.log('ФУНКЦИЯ МОДАЛКИ ', userId);
-    setSelectedProblemId(userId);
+    setSelectedUser(userId);
     setIsModalOpen(true);
   };
 
@@ -60,6 +60,7 @@ const ProfessionalProblem = () => {
             <tr>
               <th>Имя пациента</th>
               <th>Проблема</th>
+              <td></td>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +74,7 @@ const ProfessionalProblem = () => {
                     className={styles['problems__assign-btn']}
                     onClick={() => handleAssignTreatment(problem.userId)}
                   >
-                    Назначить лечение
+                    Помочь
                   </button>
                 </td>
               </tr>
@@ -81,9 +82,9 @@ const ProfessionalProblem = () => {
           </tbody>
         </table>
       </div>
-      {isModalOpen && (
+      {isModalOpen && selectedUser && (
         <AssignTreatmentModal
-          userId={selectedProblemId}
+          userId={selectedUser}
           onClose={() => setIsModalOpen(false)}
         />
       )}

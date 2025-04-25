@@ -11,6 +11,7 @@ export type User = {
   birthDate: string;
   role: ROLES;
   avatar?: string;
+  isBanned: boolean;
 };
 
 export type Professional = User & {
