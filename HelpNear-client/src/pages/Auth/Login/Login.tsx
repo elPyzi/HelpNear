@@ -67,7 +67,10 @@ const Login = () => {
       }
     },
     onSuccess: async (data) => {
-      await dispatch(login(data));
+      dispatch(login(data));
+      setTimeout(() => {
+        navigate(`${PAGE_CONFIG.HOME}`);
+      }, 2000);
     },
   });
 
@@ -112,7 +115,7 @@ const Login = () => {
           {...register('password', {
             required: 'Заполните пароль',
             minLength: {
-              value: 8,
+              value: 6,
               message: 'Пароль должен содержать больше 8 символов',
             },
             maxLength: {
