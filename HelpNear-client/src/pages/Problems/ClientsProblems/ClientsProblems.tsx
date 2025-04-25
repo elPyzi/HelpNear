@@ -55,7 +55,9 @@ const ClientsProblems = () => {
   if (error) {
     return <div>Ошибка при загрузке данных</div>;
   }
-  
+
+  console.log(conclusion?.contactNumberPro, conclusion?.title);
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
@@ -70,9 +72,9 @@ const ClientsProblems = () => {
             <h3 className={styles.professionalTitle}>
               Рекомендуемый специалист
             </h3>
-            <p className={styles.professionalName}>{conclusion?.fullName}</p>
+            <p className={styles.professionalName}>{conclusion?.fullNamePro}</p>
             <p className={styles.professionalContact}>
-              {conclusion?.contactNumber}
+              {conclusion?.contactNumberPro}
             </p>
           </div>
         </div>
