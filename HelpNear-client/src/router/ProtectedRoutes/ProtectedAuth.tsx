@@ -11,7 +11,7 @@ type TProtectedAuth = {
 const ProtectedAuth = ({ children }: TProtectedAuth) => {
   const location = useLocation();
   const { user } = useAppSelector((state) => state.auth);
-  const isAuth = true;
+  const isAuth = !!user;
 
   if (!isAuth) {
     return (
