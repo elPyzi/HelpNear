@@ -12,10 +12,8 @@ import Loading from '@/components/Loading/Loading';
 type Conclusion = {
   title: string;
   textInfo: string;
-  professional: {
-    fullName: string;
-    contactNumber: string;
-  };
+  fullNamePro: string;
+  contactNumberPro: string;
 };
 
 const getConclusion = async (): Promise<Conclusion> => {
@@ -72,11 +70,9 @@ const ClientsProblems = () => {
             <h3 className={styles.professionalTitle}>
               Рекомендуемый специалист
             </h3>
-            <p className={styles.professionalName}>
-              {conclusion?.professional?.fullName}
-            </p>
+            <p className={styles.professionalName}>{conclusion?.fullName}</p>
             <p className={styles.professionalContact}>
-              {conclusion?.professional?.contactNumber}
+              {conclusion?.contactNumber}
             </p>
           </div>
         </div>
