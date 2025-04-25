@@ -24,7 +24,7 @@ const ProfessionalProblem = () => {
       const accessToken = Cookies.get('accessToken');
       try {
         const response = await fetch(
-          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PROFESSIONAL.GET_USER}}`,
+          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PROFESSIONAL.GET_USER_PROBLEMS}}`,
           {
             method: 'GET',
             credentials: 'include',
@@ -59,10 +59,6 @@ const ProfessionalProblem = () => {
             <tr>
               <th>Имя пациента</th>
               <th>Проблема</th>
-              <th>Описание</th>
-              <th>Дата обращения</th>
-              <th>Статус</th>
-              <th>Действия</th>
             </tr>
           </thead>
           <tbody>
