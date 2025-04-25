@@ -64,8 +64,8 @@ const AssignSpecialistModal = ({
             Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({
-            problemId: problem.userId,
-            specialistId: selectedSpecialist,
+            userId: problem.userId,
+            professionalId: selectedSpecialist,
           }),
         },
       );
