@@ -34,7 +34,8 @@ const ProfessionalProblem = () => {
             },
           },
         );
-        return await response.json();
+        const data = await response.json();
+        return data;
       } catch (error) {
         const err = ensureError(error);
         throw new BaseError('', { cause: err });
