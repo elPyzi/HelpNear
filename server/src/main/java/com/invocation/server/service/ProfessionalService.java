@@ -37,10 +37,7 @@ public class ProfessionalService {
                 UsersProblemProfessionalDto usersProblemProfessionalDtoUser = new UsersProblemProfessionalDto();
                 usersProblemProfessionalDtoUser.setId(user.getId());
                 usersProblemProfessionalDtoUser.setFullName(user.getFullName());
-                usersProblemProfessionalDtoUser.setEmail(user.getEmail());
-                usersProblemProfessionalDtoUser.setBirthDate(user.getBirthDateAsString());
-                usersProblemProfessionalDtoUser.setContactNumber(user.getContactNumber());
-                usersProblemProfessionalDtoUser.setAddress(user.getAddress());
+                usersProblemProfessionalDtoUser.setTitle(user.getProblem().getTitle());
                 usersProblemProfessionalDto.add(usersProblemProfessionalDtoUser);
             }
             responceUsersProblemProfessionalDto.setUsersProblemProfessionals(usersProblemProfessionalDto);
