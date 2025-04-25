@@ -5,7 +5,7 @@ import { BaseError } from '@/utils/Errors/BaseError';
 import { API_CONFIG } from '@/api/api.config';
 
 import { useForm } from 'react-hook-form';
-import Cookies from 'node_modules/@types/js-cookie';
+import Cookies from 'js-cookie';
 
 type Problem = {
   fullName: string;

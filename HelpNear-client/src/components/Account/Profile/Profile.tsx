@@ -86,4 +86,3 @@ const Profile = () => {
 };
 
 export default Profile;
-// Профиль Проблемы Пользователи Добавление центров
