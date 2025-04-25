@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 public class ProfessionalsDto {
     int id;
-    String full_name;
+    String name;
 }

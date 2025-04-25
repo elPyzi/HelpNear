@@ -10,8 +10,5 @@ import lombok.Data;
 public class UsersProblemProfessionalDto {
     int id;
     String fullName;
-    String email;
-    String birthDate;
-    String contactNumber;
-    String address;
+    String title;
 }

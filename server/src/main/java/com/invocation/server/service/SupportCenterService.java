@@ -40,7 +40,7 @@ public class SupportCenterService {
 
                 ProfessionalsDto professionalsDto = new ProfessionalsDto();
                 professionalsDto.setId(user.getId());
-                professionalsDto.setFull_name(user.getFullName());
+                professionalsDto.setName(user.getFullName());
                 professionalDto.add(professionalsDto);
             }
             responceProfessionalsDto.setProfessionals(professionalDto);

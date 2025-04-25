@@ -20,6 +20,7 @@ public class ProfessionalController {
 
     @GetMapping("/get-users-problem")
     public ResponseEntity<?> getUsersProblem(Principal principal) {
+        System.out.println(principal.getName() + " adadadadada");
         ResponceUsersProblemProfessionalDto responceUsersProblemProfessionalDto = new ResponceUsersProblemProfessionalDto();
         ResponceErrorServerDto errorResponse = profService.getUsersProfessionalProblem(principal.getName(), responceUsersProblemProfessionalDto);
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceUsersProblemProfessionalDto.getUsersProblemProfessionals());
