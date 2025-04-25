@@ -44,6 +44,7 @@ const ProfessionalProblem = () => {
   });
 
   const handleAssignTreatment = (userId: number) => {
+    console.log('ФУНКЦИЯ МОДАЛКИ ', userId);
     setSelectedProblemId(userId);
     setIsModalOpen(true);
   };

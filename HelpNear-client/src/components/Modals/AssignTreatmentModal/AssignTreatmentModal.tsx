@@ -26,6 +26,7 @@ const AssignTreatmentModal: React.FC<AssignTreatmentModalProps> = ({
   userId,
   onClose,
 }) => {
+  console.log(userId);
   const {
     register,
     handleSubmit,
