@@ -1,0 +1,53 @@
+.problems {
+  padding: 20px;
+
+  &__title {
+    font-family: var(--secondary-font);
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  &__table {
+    width: 100%;
+    overflow-x: auto;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--not-accent-color);
+      border-radius: 5px;
+    }
+
+    th,
+    td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--primary-color);
+    }
+
+    th {
+      font-family: var(--secondary-font);
+      font-weight: bold;
+      background-color: var(--dark-color);
+      color: var(--primary-color);
+    }
+
+    td {
+      font-family: var(--primary-font);
+    }
+  }
+
+  &__status {
+    &--pending {
+      color: var(--secondary-color);
+    }
+
+    &--in_progress {
+      color: var(--accent-color);
+    }
+
+    &--completed {
+      color: var(--dark-color);
+    }
+  }
+}

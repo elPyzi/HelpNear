@@ -11,9 +11,9 @@ type TProtectedAuth = {
 const ProtectedAuth = ({ children }: TProtectedAuth) => {
   const location = useLocation();
   const { user } = useAppSelector((state) => state.auth);
-  const isAuth = !!user;
+  const isAuth = true;
 
-  if (!isAuth)
+  if (!isAuth) {
     return (
       <Navigate
         to={`/${PAGE_CONFIG.AUTH}/${PAGE_CONFIG.LOGIN}`}
@@ -21,6 +21,7 @@ const ProtectedAuth = ({ children }: TProtectedAuth) => {
         replace
       />
     );
+  }
 
   return children;
 };

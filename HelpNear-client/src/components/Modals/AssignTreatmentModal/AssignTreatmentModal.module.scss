@@ -1,0 +1,103 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__content {
+    background-color: var(--primary-color);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+
+    h2 {
+      margin-bottom: 20px;
+      color: var(--secondary-color);
+      text-align: center;
+      font-family: var(--secondary-font);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--secondary-color);
+
+    &:hover {
+      color: var(--third-color);
+    }
+  }
+
+  &__problem {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--not-accent-color);
+    border-radius: 5px;
+
+    h3 {
+      font-family: var(--secondary-font);
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-family: var(--primary-font);
+      margin-bottom: 5px;
+    }
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--secondary-color);
+      font-family: var(--secondary-font);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 10px;
+      border: 1px solid var(--secondary-color);
+      border-radius: 4px;
+      font-family: var(--primary-font);
+      resize: vertical;
+
+      &:focus {
+        outline: none;
+        border-color: var(--third-color);
+      }
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--secondary-font);
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--third-color);
+    }
+  }
+}

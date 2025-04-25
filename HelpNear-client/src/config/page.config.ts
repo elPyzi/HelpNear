@@ -12,4 +12,5 @@ export const PAGE_CONFIG = {
   HISTORY_PROBLEMS: 'history-problems',
   USERS: 'users',
   ERROR: 'error',
+  ADD_CENTERS: '',
 };

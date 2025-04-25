@@ -8,15 +8,16 @@
     justify-content: space-between;
     gap: 50px;
     flex-wrap: wrap;
+    margin-bottom: 100px;
 
     .center-details__info {
-      .center-detail__name {
+      .center-details__name {
         font-size: 32px;
         color: var(--secondary-color);
         margin-bottom: 20px;
       }
 
-      .center-detail__rating {
+      .center-details__rating {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -26,9 +27,9 @@
         margin-bottom: 20px;
       }
 
-      .center-detail__address,
-      .center-detail__contact,
-      .center-detail__email {
+      .center-details__address,
+      .center-details__contact,
+      .center-details__email {
         font-size: 18px;
         margin-bottom: 10px;
       }

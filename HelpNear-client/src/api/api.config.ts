@@ -27,12 +27,13 @@ export const API_CONFIG = {
     PROFESSIONAL: {
       BASE_URL: 'professional/',
       MAKE_JUDGMENT: 'professional/make-judgment',
-      GET_USER: 'professional/get-user',
+      GET_USER: 'professional/get-user-problem',
     },
     SUPPORT_CENTER: {
       BASE_URL: 'support-center/',
       SET_PROFESSIONAL: 'support-center/set-professional',
       CLOSE_PROBLEM: 'support-center/close-problem',
+      GET_PROFESSIONALS: 'support-center/get-support-professionals',
     },
     ADMIN: {
       BASE_URL: 'admin/',

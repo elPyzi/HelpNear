@@ -11,6 +11,7 @@ import AuthLayout from '@/layouts/Auth/AuthLayout';
 import Home from '@pages/Home/Home';
 import ProtectedAuth from '@/router/ProtectedRoutes/ProtectedAuth';
 import Error from '@/pages/Errors/Error';
+import Problems from '@/pages/Problems/Problems';
 const Account = lazy(() => import('@pages/Account/Account'));
 const SupportCenters = lazy(() => import('@pages/Centers/Centers'));
 const Login = lazy(() => import('@pages/Auth/Login/Login'));
@@ -20,7 +21,7 @@ const Registration = lazy(
 const PasswordRecovery = lazy(
   () => import('@pages/Auth/PasswordRecovery/PasswordRecovery'),
 );
-const Users = lazy(() => import('@components/Account/Users/Users'));
+const Users = lazy(() => import('@components/Users/Users'));
 const Profile = lazy(() => import('@components/Account/Profile/Profile'));
 const CenterDetails = lazy(() => import('@pages/CenterDetails/CenterDetails'));
 
@@ -51,14 +52,10 @@ export const routes: RouteObject[] = [
       </ProtectedAuth>
     ),
     children: [
-      { index: true, path: PAGE_CONFIG.PROFILE, element: <Profile /> },
+      { index: true, element: <Profile /> },
       {
         path: PAGE_CONFIG.PROBLEMS,
-        children: [
-          { index: true },
-          { path: PAGE_CONFIG.HISTORY_PROBLEMS },
-          { path: PAGE_CONFIG.PROCESSING_PROBLEMS },
-        ],
+        element: <Problems />,
       },
       { path: PAGE_CONFIG.USERS, element: <Users /> },
     ],
