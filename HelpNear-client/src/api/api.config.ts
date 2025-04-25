@@ -34,6 +34,7 @@ export const API_CONFIG = {
       SET_PROFESSIONAL: 'support-center/set-professional',
       CLOSE_PROBLEM: 'support-center/close-problem',
       GET_PROFESSIONALS: 'support-center/get-support-professionals',
+      GET_PROBLEMS: 'support-center/get-users-problem',
     },
     ADMIN: {
       BASE_URL: 'admin/',
