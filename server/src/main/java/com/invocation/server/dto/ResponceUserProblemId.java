@@ -8,11 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class ResponceUserProblemId {
-    int id;
     String fullName;
     String title;
     String description;
-    String receivedDate;
-    String status;
-    String process;
 }

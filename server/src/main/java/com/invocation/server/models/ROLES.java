@@ -2,7 +2,7 @@ package com.invocation.server.models;
 
 public enum ROLES {
     CITIZEN("CITIZEN"),
-    CENTER("CENTER"),
+    SUPPORT_CENTER("CENTER"),
     PROFESSIONAL("PROFESSIONAL"),
     ADMIN("ADMIN");
 

@@ -18,7 +18,7 @@ public class ProfessionalController {
     @Autowired
     private ProfessionalService profService;
 
-    @GetMapping("/get-users-problem")
+    @GetMapping("/get-user-problem")
     public ResponseEntity<?> getUsersProblem(Principal principal) {
         System.out.println(principal.getName() + " adadadadada");
         ResponceUsersProblemProfessionalDto responceUsersProblemProfessionalDto = new ResponceUsersProblemProfessionalDto();
@@ -26,7 +26,7 @@ public class ProfessionalController {
         return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(responceUsersProblemProfessionalDto.getUsersProblemProfessionals());
     }
 
-    @GetMapping("/get-users-problem/{id}")
+    @GetMapping("/get-user-problem/{id}")
     public ResponseEntity<?> getUserProblemId(@PathVariable int id) {
         ResponceUserProblemId responceUserProblemId = new ResponceUserProblemId();
         ResponceErrorServerDto errorResponse = profService.getUserProblemId(id, responceUserProblemId);

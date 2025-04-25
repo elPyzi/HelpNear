@@ -60,13 +60,9 @@ public class ProfessionalService {
             }
             Problem problem = problemRepo.findById(user.getProblem().getId())
                     .orElseThrow(() -> new UsernameNotFoundException("Проблема не найден"));
-            responceUserProblemId.setId(user.getId());
             responceUserProblemId.setFullName(user.getFullName());
             responceUserProblemId.setTitle(problem.getTitle());
             responceUserProblemId.setDescription(problem.getDescription());
-            responceUserProblemId.setReceivedDate(problem.getReceivedDateAsString());
-            responceUserProblemId.setStatus(problem.getProblemStatus().getStatus());
-            responceUserProblemId.setProcess(problem.getProblemProcessing().getProcess());
             return new ResponceErrorServerDto(200);
         }
         catch (UsernameNotFoundException e) {
