@@ -47,6 +47,7 @@ const ClientsProblems = () => {
   } = useQuery<Conclusion>({
     queryKey: ['conclusion'],
     queryFn: getConclusion,
+    retry: false,
   });
 
   if (isLoading) {
@@ -74,12 +75,9 @@ const ClientsProblems = () => {
             <p className={styles.professionalName}>
               {conclusion?.professional.fullName}
             </p>
-            <a
-              href={`tel:${conclusion?.professional.contactNumber}`}
-              className={styles.professionalContact}
-            >
+            <p className={styles.professionalContact}>
               {conclusion?.professional.contactNumber}
-            </a>
+            </p>
           </div>
         </div>
       </div>
