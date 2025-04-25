@@ -16,6 +16,7 @@ const Profile = () => {
       fullName: user?.fullName,
       email: user?.email,
       address: user?.address,
+      contactNumber: user?.contactNumber,
     },
   });
 
