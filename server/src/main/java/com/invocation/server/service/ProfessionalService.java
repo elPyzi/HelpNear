@@ -35,7 +35,7 @@ public class ProfessionalService {
                 Users user = usersRepo.findById(client.getUser().getId())
                         .orElseThrow(() -> new UsernameNotFoundException("Клиент не найден"));
                 UsersProblemProfessionalDto usersProblemProfessionalDtoUser = new UsersProblemProfessionalDto();
-                usersProblemProfessionalDtoUser.setId(user.getId());
+                usersProblemProfessionalDtoUser.setUserId(user.getId());
                 usersProblemProfessionalDtoUser.setFullName(user.getFullName());
                 usersProblemProfessionalDtoUser.setTitle(user.getProblem().getTitle());
                 usersProblemProfessionalDto.add(usersProblemProfessionalDtoUser);
@@ -87,7 +87,7 @@ public class ProfessionalService {
                     .orElseThrow(() -> new UsernameNotFoundException("Запись  пользователем не найдена"));
 
             Appointment appointment = new Appointment();
-            appointment.setTextInfo(requestMakeJudgment.getTextInfo());
+            appointment.setTextInfo(requestMakeJudgment.getConclusion());
             appointment.setUser(user);
             appointment.setProfessional(pro);
             appointment.setTitle(problem.getTitle());

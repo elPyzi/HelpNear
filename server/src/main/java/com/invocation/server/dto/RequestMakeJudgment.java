@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 public class RequestMakeJudgment {
     int userId;
-    String textInfo;
+    String conclusion;
 }

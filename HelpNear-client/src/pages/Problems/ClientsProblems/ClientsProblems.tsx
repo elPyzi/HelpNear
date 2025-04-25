@@ -55,7 +55,7 @@ const ClientsProblems = () => {
   if (error) {
     return <div>Ошибка при загрузке данных</div>;
   }
-
+  
   return (
     <div className={styles.container}>
       <div className={styles.card}>

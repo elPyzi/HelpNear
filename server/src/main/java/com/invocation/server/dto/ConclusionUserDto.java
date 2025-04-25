@@ -6,10 +6,7 @@ import lombok.Data;
 public class ConclusionUserDto {
     String textInfo;
     String title;
-    private Professional professional;
-    @Data
-    public static class Professional{
-        String fullName;
-        String contactNumber;
-    }
+    String fullNamePro;
+    String contactNumberPro;
+
 }

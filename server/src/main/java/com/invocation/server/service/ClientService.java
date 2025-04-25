@@ -71,10 +71,8 @@ public class ClientService {
                 ConclusionUserDto conclusionUserDto = new ConclusionUserDto();
                 conclusionUserDto.setTextInfo(appointment.getTextInfo());
                 conclusionUserDto.setTitle(appointment.getTitle());
-                ConclusionUserDto.Professional professionalDto = new ConclusionUserDto.Professional();
-                professionalDto.setFullName(userPro.getFullName());
-                professionalDto.setContactNumber(userPro.getContactNumber());
-                conclusionUserDto.setProfessional(professionalDto);
+                conclusionUserDto.setFullNamePro(userPro.getFullName());
+                conclusionUserDto.setContactNumberPro(userPro.getContactNumber());
                 conclusionUserDtoList.add(conclusionUserDto);
             }
             responceConclusionUserDto.setConclusionUsers(conclusionUserDtoList);
