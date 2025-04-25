@@ -73,10 +73,10 @@ const ClientsProblems = () => {
               Рекомендуемый специалист
             </h3>
             <p className={styles.professionalName}>
-              {conclusion?.professional.fullName}
+              {conclusion?.professional?.fullName}
             </p>
             <p className={styles.professionalContact}>
-              {conclusion?.professional.contactNumber}
+              {conclusion?.professional?.contactNumber}
             </p>
           </div>
         </div>
