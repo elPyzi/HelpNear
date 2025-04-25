@@ -20,7 +20,7 @@ const getProblems = async (): Promise<Problems[]> => {
   try {
     const accessToken = Cookies.get('accessToken');
     const response = await fetch(
-      `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.SUPPORT_CENTER.GET_PROFESSIONALS}`,
+      `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.SUPPORT_CENTER.GET_PROBLEMS}`,
       {
         method: 'GET',
         credentials: 'include',
@@ -49,6 +49,7 @@ const CenterProblems = () => {
   const { data: problems, isLoading } = useQuery<Problems[]>({
     queryKey: ['problems'],
     queryFn: getProblems,
+    retry: false,
   });
 
   const handleAssignSpecialist = (problem: Problems) => {

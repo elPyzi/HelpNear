@@ -68,6 +68,7 @@ const Login = () => {
     },
     onSuccess: async (data) => {
       await dispatch(login(data));
+      navigate(`${PAGE_CONFIG.HOME}`);
     },
   });
 
