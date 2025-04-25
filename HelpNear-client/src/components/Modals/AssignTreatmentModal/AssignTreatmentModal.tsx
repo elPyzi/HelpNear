@@ -9,10 +9,6 @@ import Cookies from 'js-cookie';
 
 type Problem = {
   fullName: string;
-  email: string;
-  birthDate: string;
-  contactNumber: string;
-  address: string;
   title: string;
   description: string;
 };
@@ -41,7 +37,7 @@ const AssignTreatmentModal: React.FC<AssignTreatmentModalProps> = ({
       const accessToken = Cookies.get('accessToken');
       try {
         const response = await fetch(
-          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PROFESSIONAL.GET_USER}/${userId}`,
+          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PROFESSIONAL.GET_USER_PROBLEMS}/${userId}`,
           {
             method: 'GET',
             credentials: 'include',
