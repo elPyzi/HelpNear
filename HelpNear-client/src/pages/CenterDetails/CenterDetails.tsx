@@ -41,7 +41,6 @@ const CenterDetails = () => {
   const [isSubmissionModalOpen, setSubmissionModal] = useState<boolean>(false);
   const { id } = useParams();
   console.log(typeof id, id);
-
   const {
     data: centerData,
     isLoading,

@@ -40,13 +40,7 @@ public class SupportCenterService {
 
                 ProfessionalsDto professionalsDto = new ProfessionalsDto();
                 professionalsDto.setId(user.getId());
-                professionalsDto.setEmail(user.getEmail());
                 professionalsDto.setFull_name(user.getFullName());
-                professionalsDto.setContact_number(user.getContactNumber());
-                professionalsDto.setInfo(professional.getInfo());
-                professionalsDto.setFk_center(professional.getCenter().getName());
-                professionalsDto.setProfessionals_rating(professional.getAverageRating());
-                professionalsDto.setCenter_rating(professional.getCenter().getAverageRating());
                 professionalDto.add(professionalsDto);
             }
             responceProfessionalsDto.setProfessionals(professionalDto);
@@ -81,12 +75,10 @@ public class SupportCenterService {
                 }
                 if(check == 0){
                     UsersProblemCenterDto usersProblemCenterDto1 = new UsersProblemCenterDto();
-                    usersProblemCenterDto1.setUserProblemId(user.getId());
-                    usersProblemCenterDto1.setLogin(user.getLogin());
-                    usersProblemCenterDto1.setEmail(user.getEmail());
+                    usersProblemCenterDto1.setUserId(user.getId());
+                    usersProblemCenterDto1.setFullName(user.getFullName());
                     usersProblemCenterDto1.setTitle(problem.getTitle());
                     usersProblemCenterDto1.setDescription(problem.getDescription());
-                    usersProblemCenterDto1.setProblemData(problem.getReceivedDateAsString());
                     usersProblemCenterDto.add(usersProblemCenterDto1);
                 }
             }

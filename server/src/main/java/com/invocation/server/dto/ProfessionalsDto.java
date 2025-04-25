@@ -9,11 +9,5 @@ import lombok.Data;
 @Data
 public class ProfessionalsDto {
     int id;
-    String email;
     String full_name;
-    String contact_number;
-    String info;
-    double professionals_rating;
-    String fk_center;
-    double center_rating;
 }

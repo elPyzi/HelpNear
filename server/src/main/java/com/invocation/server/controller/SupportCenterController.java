@@ -18,7 +18,7 @@ public class SupportCenterController {
     @Autowired
     private SupportCenterService supportCenterService;
 
-    @GetMapping("/get-professionals")
+    @GetMapping("get-center-professionals")
     public ResponseEntity<?> getProfessionals(Principal principal){
         ResponceProfessionalsDto responceProfessionalsDto = new ResponceProfessionalsDto();
         ResponceErrorServerDto errorResponse = supportCenterService.getProfessionals(responceProfessionalsDto, principal.getName());

@@ -3,6 +3,7 @@ package com.invocation.server.service;
 import com.invocation.server.dto.*;
 import com.invocation.server.entity.Roles;
 import com.invocation.server.entity.Users;
+import com.invocation.server.models.ROLES;
 import com.invocation.server.repository.RolesRepo;
 import com.invocation.server.repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,7 @@ public class AuthService {
                 responseLoginUser.setBirth_date(user.getBirthDateAsString());
                 responseLoginUser.setContact_number(user.getContactNumber());
                 responseLoginUser.setAddress(user.getAddress());
-                responseLoginUser.setRole(user.getRole().getRoleName());
+                responseLoginUser.setRoles(ROLES.fromDbValue(user.getRole().getRoleName()));
 
                 ResponseLoginUserDto.Token tokenData = new ResponseLoginUserDto.Token();
                 tokenData.setAccessToken(jwt);

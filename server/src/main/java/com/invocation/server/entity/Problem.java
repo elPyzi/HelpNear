@@ -39,10 +39,19 @@ public class Problem {
 
     public void setReceivedDateFromString(String dateString) {
         try {
+            String[] parts = dateString.split("-");
+            if (parts.length == 3) {
+                String year = parts[0];
+                String month = parts[1].length() == 1 ? "0" + parts[1] : parts[1];
+                String day = parts[2].length() == 1 ? "0" + parts[2] : parts[2];
+                dateString = year + "-" + month + "-" + day;
+            }
+
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             this.receivedDate = LocalDate.parse(dateString, formatter);
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Неверный формат даты. Ожидается dd.MM.yyyy");
+        }
+        catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Неверный формат даты. Ожидается yyyy-MM-dd или yyyy-M-d");
         }
     }
 

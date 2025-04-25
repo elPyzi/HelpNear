@@ -3,6 +3,7 @@ package com.invocation.server.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.invocation.server.models.ROLES;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,7 +15,7 @@ public class ResponseLoginUserDto {
     String birth_date;
     String contact_number;
     String address;
-    String role;
+    ROLES roles;
 
     @JsonIgnore
     private Token token;
