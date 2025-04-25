@@ -66,6 +66,7 @@ const ProfessionalProblem = () => {
           <tbody>
             {problems?.map((problem) => (
               <tr key={problem.userId}>
+                <td>{problem.userId}</td>
                 <td>{problem.fullName}</td>
                 <td>{problem.title}</td>
 

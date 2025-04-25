@@ -57,17 +57,13 @@ const ClientsProblems = () => {
     return <div>Ошибка при загрузке данных</div>;
   }
 
-  if (!conclusion) {
-    return null;
-  }
-
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h2 className={styles.title}>{conclusion.title}</h2>
+        <h2 className={styles.title}>{conclusion?.title}</h2>
 
         <div className={styles.content}>
-          <p className={styles.text}>{conclusion.textInfo}</p>
+          <p className={styles.text}>{conclusion?.textInfo}</p>
         </div>
 
         <div className={styles.footer}>
@@ -76,13 +72,13 @@ const ClientsProblems = () => {
               Рекомендуемый специалист
             </h3>
             <p className={styles.professionalName}>
-              {conclusion.professional.fullName}
+              {conclusion?.professional.fullName}
             </p>
             <a
-              href={`tel:${conclusion.professional.contactNumber}`}
+              href={`tel:${conclusion?.professional.contactNumber}`}
               className={styles.professionalContact}
             >
-              {conclusion.professional.contactNumber}
+              {conclusion?.professional.contactNumber}
             </a>
           </div>
         </div>
