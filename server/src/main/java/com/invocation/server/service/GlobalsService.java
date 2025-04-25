@@ -37,7 +37,7 @@ public class GlobalsService {
 
                 ProfessionalsDto professionalsDto = new ProfessionalsDto();
                 professionalsDto.setId(user.getId());
-                professionalsDto.setFull_name(user.getFullName());
+                professionalsDto.setName(user.getFullName());
                 professionalDto.add(professionalsDto);
             }
             responceProfessionalsDto.setProfessionals(professionalDto);
@@ -80,7 +80,7 @@ public class GlobalsService {
                         .orElseThrow(() -> new UsernameNotFoundException("Профессионал не найден"));
 
                 ProfessionalsDto professionalsDto = new ProfessionalsDto();
-                professionalsDto.setFull_name(user.getFullName());
+                professionalsDto.setName(user.getFullName());
                 professionalDto.add(professionalsDto);
             }
 
@@ -94,7 +94,7 @@ public class GlobalsService {
                             .orElseThrow(() -> new UsernameNotFoundException("Профессионал не найден"));
 
                     ProfessionalsDto professionalsDto = new ProfessionalsDto();
-                    professionalsDto.setFull_name(user.getFullName());
+                    professionalsDto.setName(user.getFullName());
                     professionalDto.add(professionalsDto);
                 }
             }
