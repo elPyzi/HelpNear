@@ -33,7 +33,7 @@ public class ClientService {
             Users user = usersRepo.findByLogin(login)
                     .orElseThrow(() -> new UsernameNotFoundException("Логин не найден"));
             if (user.getProblem() != null) {
-                throw new RuntimeException();
+                throw new RuntimeException("Больше 1-го обращения отправлять нельзя");
             }
             ProblemStatus problemStatus = problemStatusRepo.findById(5)
                     .orElseThrow(() -> new UsernameNotFoundException("Статус не найден"));
@@ -54,8 +54,11 @@ public class ClientService {
             usersRepo.save(user);
             return new ResponceErrorServerDto(200);
         }
+        catch (RuntimeException e) {
+            return new ResponceErrorServerDto(401, e.getMessage());
+        }
         catch (Exception e) {
-            return new ResponceErrorServerDto(401);
+            return new ResponceErrorServerDto(500, "Внутренняя ошибка сервера");
         }
     }
 

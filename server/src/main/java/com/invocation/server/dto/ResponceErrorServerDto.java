@@ -10,13 +10,23 @@ import lombok.Data;
 @Data
 public class ResponceErrorServerDto {
     private int errorCode;
+    private String message;
 
     @JsonIgnore
-    public ResponceErrorServerDto(){
-        errorCode = 0;
+    public ResponceErrorServerDto() {
+        this.errorCode = 0;
+        this.message = null;
     }
+
     @JsonIgnore
     public ResponceErrorServerDto(int errorCode) {
         this.errorCode = errorCode;
+        this.message = null;
+    }
+
+    @JsonIgnore
+    public ResponceErrorServerDto(int errorCode, String message) {
+        this.errorCode = errorCode;
+        this.message = message;
     }
 }
