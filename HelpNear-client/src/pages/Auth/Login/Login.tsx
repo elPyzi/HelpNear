@@ -60,18 +60,21 @@ const Login = () => {
               },
             },
           });
-          throw new Error(`${response.status}`);
-        }
-        if (response.status === 401) {
-          const errorData = await response.json();
-          console.log('Ошибка 401:', errorData.message);
-          errorMessage.showNotification(errorData.message, {});
-          throw new Error(`${response.status}`);
+          throw new BaseError(`Error with fetch login`, {
+            cause: new Error(),
+            context: {
+              response: await response.json(),
+              endpoint: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUTH.LOGIN}`,
+            },
+          });
         }
 
         return await response.json();
       } catch (err) {
         const error = ensureError(err);
+        if (error instanceof BaseError) {
+          throw error;
+        }
 
         throw new BaseError('Error with fetch login', {
           cause: error,
@@ -89,17 +92,23 @@ const Login = () => {
       }, 500);
     },
     onError: async (error) => {
-      console.log('dsd');
-      if (error.message === '401') {
-        console.log(401);
-        console.log(error.stack);
-        console.log(error.name);
-        errorMessage.HTTP401();
-        return;
-      }
-      if (error.message === '403') {
-        errorMessage.HTTP403();
-        return;
+      if (error instanceof BaseError) {
+        const response = error.cause?.context?.response;
+        if (response) {
+          const errorData = await response.json();
+          const statusCode = response.status;
+          const errorMessage = errorData.message;
+
+          if (statusCode === 401) {
+            errorMessage.HTTP401();
+            console.log('Ошибка авторизации:', errorMessage);
+            return;
+          }
+          if (statusCode === 403) {
+            errorMessage.HTTP403();
+            return;
+          }
+        }
       }
     },
   });
