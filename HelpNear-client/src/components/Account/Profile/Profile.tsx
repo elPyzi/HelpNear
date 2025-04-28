@@ -20,7 +20,9 @@ const Profile = () => {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    setNeedUpdateData(false);
+  };
 
   return (
     <form className={styles['profile']} onSubmit={handleSubmit(onSubmit)}>
@@ -65,12 +67,12 @@ const Profile = () => {
           />
         </label>
       </div>
-      <button
+      {/* <button
         type={needUpdateData ? 'submit' : 'button'}
         onClick={() => setNeedUpdateData((prev) => !prev)}
       >
         {needUpdateData ? 'Сохранить' : 'Изменить данные'}
-      </button>
+      </button> */}
     </form>
   );
 };

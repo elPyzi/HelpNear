@@ -50,7 +50,10 @@ const Account = () => {
           <button onClick={handleLogout} className={styles['account__logout']}>
             Выйти
           </button>
-          <button onClick={() => navigate({ pathname: PAGE_CONFIG.HOME })}>
+          <button
+            onClick={() => navigate({ pathname: PAGE_CONFIG.HOME })}
+            style={{ display: 'block', color: '#fbf9e4' }}
+          >
             Вернуться
           </button>
         </div>

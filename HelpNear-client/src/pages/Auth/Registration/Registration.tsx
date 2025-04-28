@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import { User } from '@/types/Users';
-import FormErrorMessage from '@/components/FormErrorMessage';
 
 type RegistrationData = Omit<User, 'role' | 'id'>;
 
