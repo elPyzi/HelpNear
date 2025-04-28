@@ -61,9 +61,6 @@ const Login = () => {
             },
           });
         if (response.status === 401) {
-          const errorData = await response.json();
-          console.log('Ошибка 401:', errorData.message);
-          errorMessage.showNotification(errorData.message, {});
           return;
         }
 
@@ -87,6 +84,12 @@ const Login = () => {
       }, 500);
     },
     onError: (error) => {
+      if (error.message === '401') {
+        console.log(error.stack);
+        console.log(error.name);
+        errorMessage.HTTP401();
+        return;
+      }
       if (error.message === '403') {
         errorMessage.HTTP403();
         return;
