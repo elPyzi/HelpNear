@@ -16,6 +16,7 @@ type Problem = {
 interface AssignTreatmentModalProps {
   userId: number;
   onClose: () => void;
+  refetch: () => void;
 }
 
 type ConclusionForm = {
@@ -25,6 +26,7 @@ type ConclusionForm = {
 const AssignTreatmentModal: React.FC<AssignTreatmentModalProps> = ({
   userId,
   onClose,
+  refetch,
 }) => {
   console.log(userId);
   const {
@@ -73,6 +75,7 @@ const AssignTreatmentModal: React.FC<AssignTreatmentModalProps> = ({
         },
       );
       if (!response.ok) return;
+      refetch();
       onClose();
     } catch (error) {
       const err = ensureError(error);

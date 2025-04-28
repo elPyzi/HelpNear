@@ -18,6 +18,7 @@ type AssignSpecialistModalProps = {
     title: string;
   };
   onClose: () => void;
+  refetch: () => void;
 };
 
 const getSpecialists = async (): Promise<Specialist[]> => {
@@ -40,6 +41,7 @@ const getSpecialists = async (): Promise<Specialist[]> => {
 const AssignSpecialistModal = ({
   problem,
   onClose,
+  refetch,
 }: AssignSpecialistModalProps) => {
   const [selectedSpecialist, setSelectedSpecialist] = useState<number | null>(
     null,
@@ -71,8 +73,8 @@ const AssignSpecialistModal = ({
       );
 
       if (!response.ok) return;
-
       onClose();
+      refetch();
     } catch (error) {
       const err = ensureError(error);
       throw new BaseError('error with add problem', { cause: err });

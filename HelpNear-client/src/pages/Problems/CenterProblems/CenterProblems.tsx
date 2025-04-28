@@ -46,10 +46,15 @@ const CenterProblems = () => {
   const [selectedProblem, setSelectedProblem] = useState<Problems | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: problems, isLoading } = useQuery<Problems[]>({
+  const {
+    data: problems,
+    isLoading,
+    refetch,
+  } = useQuery<Problems[]>({
     queryKey: ['problems'],
     queryFn: getProblems,
     retry: false,
+    refetchInterval: 20000,
   });
 
   const handleAssignSpecialist = (problem: Problems) => {
@@ -95,6 +100,7 @@ const CenterProblems = () => {
         <AssignSpecialistModal
           problem={selectedProblem}
           onClose={() => setIsModalOpen(false)}
+          refetch={refetch}
         />
       )}
     </div>

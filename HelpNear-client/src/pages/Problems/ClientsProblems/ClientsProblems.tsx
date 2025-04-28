@@ -49,6 +49,10 @@ const ClientsProblems = () => {
     retry: false,
   });
 
+  if (!conclusions) {
+    <h1>У вас истории проблем</h1>;
+  }
+
   if (isLoading) {
     return <Loading />;
   }

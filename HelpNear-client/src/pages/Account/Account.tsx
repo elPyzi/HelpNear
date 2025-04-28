@@ -46,12 +46,14 @@ const Account = () => {
             </>
           )}
         </nav>
-        <button onClick={handleLogout} className={styles['account__logout']}>
-          Выйти
-        </button>
-        <button onClick={() => navigate({ pathname: PAGE_CONFIG.HOME })}>
-          Вернуться
-        </button>
+        <div>
+          <button onClick={handleLogout} className={styles['account__logout']}>
+            Выйти
+          </button>
+          <button onClick={() => navigate({ pathname: PAGE_CONFIG.HOME })}>
+            Вернуться
+          </button>
+        </div>
       </aside>
       <main className={styles['account__content']}>
         <Outlet />

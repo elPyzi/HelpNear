@@ -18,7 +18,11 @@ const ProfessionalProblem = () => {
   const [selectedUser, setSelectedUser] = useState<number>();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: problems, isLoading } = useQuery<Problems[]>({
+  const {
+    data: problems,
+    isLoading,
+    refetch,
+  } = useQuery<Problems[]>({
     queryKey: ['problems'],
     queryFn: async (): Promise<Problems[]> => {
       const accessToken = Cookies.get('accessToken');
@@ -41,6 +45,7 @@ const ProfessionalProblem = () => {
         throw new BaseError('', { cause: err });
       }
     },
+    refetchInterval: 20000,
   });
 
   const handleAssignTreatment = (userId: number) => {
@@ -53,14 +58,14 @@ const ProfessionalProblem = () => {
 
   return (
     <div className={styles['problems']}>
-      <h2 className={styles['problems__title']}>Проблемы пациентов</h2>
+      <h2 className={styles['problems__title']}>Проблемы клиентов</h2>
       <div className={styles['problems__table']}>
         <table>
           <thead>
             <tr>
               <th>Имя клиента</th>
               <th>Проблема</th>
-              <td></td>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -86,6 +91,7 @@ const ProfessionalProblem = () => {
         <AssignTreatmentModal
           userId={selectedUser}
           onClose={() => setIsModalOpen(false)}
+          refetch={refetch}
         />
       )}
     </div>

@@ -60,6 +60,9 @@ const Login = () => {
               },
             },
           });
+        if (response.status === 401) {
+          return;
+        }
 
         return await response.json();
       } catch (err) {
