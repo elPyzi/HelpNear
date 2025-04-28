@@ -61,6 +61,9 @@ const Login = () => {
             },
           });
         if (response.status === 401) {
+          const errorData = await response.json();
+          console.log('Ошибка 401:', errorData.message);
+          errorMessage.showNotification(errorData.message, {});
           return;
         }
 
