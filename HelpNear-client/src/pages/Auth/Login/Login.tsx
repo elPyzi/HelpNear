@@ -82,7 +82,6 @@ const Login = () => {
       }
     },
     onSuccess: async (data) => {
-      if (!data) return;
       dispatch(login(data));
       checkMessage.AuthSuccess();
       setTimeout(() => {
@@ -92,6 +91,7 @@ const Login = () => {
     onError: async (error) => {
       console.log('dsd');
       if (error.message === '401') {
+        console.log(401);
         console.log(error.stack);
         console.log(error.name);
         errorMessage.HTTP401();
