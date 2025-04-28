@@ -61,7 +61,7 @@ const Login = () => {
             },
           });
         if (response.status === 401) {
-          console.log('some');
+          console.log(response.statusText);
           return;
         }
 
