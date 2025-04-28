@@ -99,8 +99,7 @@ public class AuthService {
             return response;
         }
         catch (UsernameNotFoundException e) {
-            response.setErrorCode(401);
-            return response;
+            return new ResponceErrorServerDto(401, "Некорректный пароль или логин");
         }
         catch (Exception e) {
             response.setErrorCode(500);

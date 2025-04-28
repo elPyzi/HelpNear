@@ -61,7 +61,6 @@ const Login = () => {
             },
           });
         if (response.status === 401) {
-          console.log(response.text);
           return;
         }
 
@@ -78,7 +77,6 @@ const Login = () => {
       }
     },
     onSuccess: async (data) => {
-      if (!data) return;
       dispatch(login(data));
       checkMessage.AuthSuccess();
       setTimeout(() => {
@@ -86,10 +84,6 @@ const Login = () => {
       }, 500);
     },
     onError: (error) => {
-      if (error.message === '401') {
-        errorMessage.HTTP401();
-        return;
-      }
       if (error.message === '403') {
         errorMessage.HTTP403();
         return;
