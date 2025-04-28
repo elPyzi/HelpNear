@@ -51,7 +51,7 @@ const Login = () => {
           },
         );
 
-        if (!response.ok)
+        if (!response.ok) {
           navigate(`${PAGE_CONFIG.ERROR}/${response.status}`, {
             state: {
               message: response.text,
@@ -60,8 +60,13 @@ const Login = () => {
               },
             },
           });
+          throw new Error(`${response.status}`);
+        }
         if (response.status === 401) {
-          return;
+          const errorData = await response.json();
+          console.log('Ошибка 401:', errorData.message);
+          errorMessage.showNotification(errorData.message, {});
+          throw new Error(`${response.status}`);
         }
 
         return await response.json();
@@ -77,13 +82,15 @@ const Login = () => {
       }
     },
     onSuccess: async (data) => {
+      if (!data) return;
       dispatch(login(data));
       checkMessage.AuthSuccess();
       setTimeout(() => {
         navigate(`${PAGE_CONFIG.HOME}`);
       }, 500);
     },
-    onError: (error) => {
+    onError: async (error) => {
+      console.log('dsd');
       if (error.message === '401') {
         console.log(error.stack);
         console.log(error.name);
