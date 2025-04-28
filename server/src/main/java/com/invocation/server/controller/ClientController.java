@@ -22,7 +22,7 @@ public class ClientController {
         System.out.println(principal.getName());
         System.out.println(request);
         ResponceErrorServerDto errorResponse = clientService.makeApplication(request, principal.getName());
-        return ResponseEntity.status(HttpStatus.valueOf(errorResponse.getErrorCode())).body(errorResponse);
+        return ResponseEntity.status(errorResponse.getErrorCode()).body(errorResponse);
     }
 
     @GetMapping("/conclusion")

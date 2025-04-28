@@ -10,10 +10,9 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class ResponseLoginUserDto {
-    String full_name;
+    String fullName;
     String email;
-    String birth_date;
-    String contact_number;
+    String contactNumber;
     String address;
     ROLES role;
 

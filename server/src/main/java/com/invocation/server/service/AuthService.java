@@ -80,12 +80,11 @@ public class AuthService {
                 String jwt = jwtUtils.generateToken(user);
                 String refreshToken = jwtUtils.generateRefreshToken(user);
 
-                responseLoginUser.setFull_name(user.getFullName());
-                responseLoginUser.setEmail(user.getEmail());
-                responseLoginUser.setBirth_date(user.getBirthDateAsString());
-                responseLoginUser.setContact_number(user.getContactNumber());
+                responseLoginUser.setFullName(user.getFullName());
+                responseLoginUser.setContactNumber(user.getContactNumber());
                 responseLoginUser.setAddress(user.getAddress());
                 responseLoginUser.setRole(ROLES.fromDbValue(user.getRole().getRoleName()));
+                responseLoginUser.setEmail(user.getEmail());
 
                 ResponseLoginUserDto.Token tokenData = new ResponseLoginUserDto.Token();
                 tokenData.setAccessToken(jwt);
@@ -136,11 +135,11 @@ public class AuthService {
                 return response;
             }
 
-            responseLoginUser.setFull_name(user.getFullName());
-            responseLoginUser.setEmail(user.getEmail());
-            responseLoginUser.setBirth_date(user.getBirthDateAsString());
+            responseLoginUser.setFullName(user.getFullName());
             responseLoginUser.setAddress(user.getAddress());
-            responseLoginUser.setContact_number(user.getContactNumber());
+            responseLoginUser.setContactNumber(user.getContactNumber());
+            responseLoginUser.setRole(ROLES.fromDbValue(user.getRole().getRoleName()));
+            responseLoginUser.setEmail(user.getEmail());
 
             response.setErrorCode(0);
             return response;
