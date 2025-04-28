@@ -73,6 +73,7 @@ const AssignTreatmentModal: React.FC<AssignTreatmentModalProps> = ({
         },
       );
       if (!response.ok) return;
+      onClose();
     } catch (error) {
       const err = ensureError(error);
       throw new BaseError('', { cause: err });

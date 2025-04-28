@@ -58,7 +58,7 @@ const ProfessionalProblem = () => {
         <table>
           <thead>
             <tr>
-              <th>Имя пациента</th>
+              <th>Имя клиента</th>
               <th>Проблема</th>
               <td></td>
             </tr>
@@ -66,7 +66,6 @@ const ProfessionalProblem = () => {
           <tbody>
             {problems?.map((problem) => (
               <tr key={problem.userId}>
-                <td>{problem.userId}</td>
                 <td>{problem.fullName}</td>
                 <td>{problem.title}</td>
 

@@ -13,12 +13,19 @@ import { useAppDispatch } from '@/hooks/reduxHooks';
 
 import { API_CONFIG } from '@/api/api.config';
 
+import { ErrorMessage } from '@/utils/PushMessages/Error/ErrorMessages';
+import { CheckMessage } from '@/utils/PushMessages/Check/CheckMessages';
+
+import FormErrorMessage from '@/components/FormErrorMessage';
+
 type LoginData = {
   authString: string;
   password: string;
 };
 
 const Login = () => {
+  const errorMessage = new ErrorMessage();
+  const checkMessage = new CheckMessage();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
@@ -68,9 +75,16 @@ const Login = () => {
     },
     onSuccess: async (data) => {
       dispatch(login(data));
+      checkMessage.AuthSuccess();
       setTimeout(() => {
         navigate(`${PAGE_CONFIG.HOME}`);
-      }, 2000);
+      }, 500);
+    },
+    onError: (error) => {
+      if (error.message === '403') {
+        errorMessage.HTTP403();
+        return;
+      }
     },
   });
 
@@ -93,7 +107,7 @@ const Login = () => {
             required: true,
             minLength: {
               value: 5,
-              message: 'Имя должно содержать больше 5 символов',
+              message: 'Имя должно содержать больше 4 символов',
             },
             maxLength: 50,
             validate: (value) => {
@@ -106,7 +120,9 @@ const Login = () => {
           onFocus={(el) => (el.target.placeholder = '')}
           onBlur={(el) => (el.target.placeholder = 'Email или login')}
         />
-
+        {errors.authString && (
+          <FormErrorMessage message={errors.authString.message!} />
+        )}
         <input
           type="password"
           placeholder="Пароль"
@@ -116,7 +132,7 @@ const Login = () => {
             required: 'Заполните пароль',
             minLength: {
               value: 6,
-              message: 'Пароль должен содержать больше 8 символов',
+              message: 'Пароль должен содержать больше 6 символов',
             },
             maxLength: {
               value: 20,
@@ -127,6 +143,9 @@ const Login = () => {
           onFocus={(el) => (el.target.placeholder = '')}
           onBlur={(el) => (el.target.placeholder = 'Пароль')}
         />
+        {errors.password && (
+          <FormErrorMessage message={errors.password.message!} />
+        )}
         <button
           type="submit"
           className={`${styles['login__btn']} ${styles['login__btn-login']}`}

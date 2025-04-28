@@ -24,17 +24,6 @@ const Profile = () => {
 
   return (
     <form className={styles['profile']} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles['profile__avatar']}>
-        <label htmlFor="avatar" className={styles['profile__info-label']}>
-          <input
-            type="text"
-            id="avatar"
-            disabled={!needUpdateData}
-            {...register('avatar')}
-            className={styles['profile__info-inp']}
-          />
-        </label>
-      </div>
       <div className={styles['profile__user-info']}>
         <label htmlFor="fullName" className={styles['profile__info-label']}>
           <input

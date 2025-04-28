@@ -1,7 +1,5 @@
 import styles from './Registration.module.scss';
 
-import AvatarPhoto from '@images/svg/avatar-photo.svg';
-
 import { API_CONFIG } from '@/api/api.config';
 import { PAGE_CONFIG } from '@/config/page.config';
 import { ensureError } from '@utils/errorHandler';
@@ -14,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import { User } from '@/types/Users';
+import FormErrorMessage from '@/components/FormErrorMessage';
 
 type RegistrationData = Omit<User, 'role' | 'id'>;
 
@@ -56,6 +55,7 @@ const Registration = () => {
         if (response.status == 409) {
           const errorMessage = await response.text();
           pushMessage.HTTP409(errorMessage);
+          return;
         }
       } catch (err) {
         const error = ensureError(err);
@@ -126,16 +126,16 @@ const Registration = () => {
               className={`${styles['registration__inp']} ${errors.password && styles['field__error']}`}
               tabIndex={1}
               {...register('password', {
-                // required: 'Заполните пароль',
-                // minLength: {
-                //   value: 8,
-                //   message: 'Пароль должен содержать больше 8 символов',
-                // },
-                // maxLength: {
-                //   value: 50,
-                //   message: 'Пароль не стоит делать таким большим',
-                // },
-                // pattern: /^[a-zA-Z0-9!@#$%^&*()_+-]+$/,
+                required: 'Заполните пароль',
+                minLength: {
+                  value: 6,
+                  message: 'Пароль должен содержать больше 5 символов',
+                },
+                maxLength: {
+                  value: 50,
+                  message: 'Пароль не стоит делать таким большим',
+                },
+                pattern: /^[a-zA-Z0-9!@#$%^&*()_+-]+$/,
               })}
               onFocus={(el) => (el.target.placeholder = '')}
               onBlur={(el) => (el.target.placeholder = 'Пароль')}

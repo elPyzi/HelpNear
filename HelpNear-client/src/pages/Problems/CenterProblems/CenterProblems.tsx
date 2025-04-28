@@ -69,9 +69,7 @@ const CenterProblems = () => {
               <th>Имя</th>
               <th>Заголовок</th>
               <th>Описание</th>
-              <th>Дата получения</th>
-              <th>Статус</th>
-              <th>Действия</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
