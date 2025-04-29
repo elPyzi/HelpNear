@@ -94,7 +94,7 @@ public class AuthService {
                 response.setErrorCode(0);
             }
             else {
-                response.setErrorCode(401);
+                return new ResponceErrorServerDto(401, "Некорректный пароль или логин");
             }
             return response;
         }
