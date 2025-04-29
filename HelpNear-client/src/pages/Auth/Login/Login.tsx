@@ -17,6 +17,7 @@ import { ErrorMessage } from '@/utils/PushMessages/Error/ErrorMessages';
 import { CheckMessage } from '@/utils/PushMessages/Check/CheckMessages';
 
 import FormErrorMessage from '@/components/FormErrorMessage';
+import { ResponseError } from '@/utils/Errors/ResponseError';
 
 type LoginData = {
   authString: string;
@@ -60,21 +61,16 @@ const Login = () => {
               },
             },
           });
-          throw new BaseError(`Error with fetch login`, {
-            cause: new Error(),
-            context: {
-              response: await response.json(),
-              endpoint: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUTH.LOGIN}`,
-            },
-          });
+          throw new ResponseError(
+            'Error with login response',
+            response.status,
+            response.statusText,
+          );
         }
 
         return await response.json();
       } catch (err) {
         const error = ensureError(err);
-        if (error instanceof BaseError) {
-          throw error;
-        }
 
         throw new BaseError('Error with fetch login', {
           cause: error,
@@ -91,24 +87,16 @@ const Login = () => {
         navigate(`${PAGE_CONFIG.HOME}`);
       }, 500);
     },
-    onError: async (error) => {
-      if (error instanceof BaseError) {
-        const response = error.cause?.context?.response;
-        if (response) {
-          const errorData = await response.json();
-          const statusCode = response.status;
-          const errorMessage = errorData.message;
-
-          if (statusCode === 401) {
-            errorMessage.HTTP401();
-            console.log('Ошибка авторизации:', errorMessage);
-            return;
-          }
-          if (statusCode === 403) {
-            errorMessage.HTTP403();
-            return;
-          }
-        }
+    onError: async (error: ResponseError) => {
+      if (error.statusCode === 401) {
+        if (error.responseMessage)
+          errorMessage.showNotification(error.responseMessage, {});
+        errorMessage.HTTP401();
+        return;
+      }
+      if (error.message === '403') {
+        errorMessage.HTTP403();
+        return;
       }
     },
   });
