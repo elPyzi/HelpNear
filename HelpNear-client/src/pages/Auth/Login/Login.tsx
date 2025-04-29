@@ -52,6 +52,10 @@ const Login = () => {
           },
         );
 
+        if (response.status === 401) {
+          errorMessage.showNotification(response.statusText, {});
+        }
+
         if (!response.ok) {
           console.log('err in !res ok');
           throw new ResponseError(
