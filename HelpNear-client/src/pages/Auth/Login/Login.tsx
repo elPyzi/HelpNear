@@ -54,9 +54,10 @@ const Login = () => {
 
         if (!response.ok) {
           console.log('err in !res ok');
+          const message = await response.text(); // Получаем текст ответа
           navigate(`${PAGE_CONFIG.ERROR}/${response.status}`, {
             state: {
-              message: response.text,
+              message,
               from: {
                 pathname: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AUTH.LOGIN}`,
               },
