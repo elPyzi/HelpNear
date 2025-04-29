@@ -53,6 +53,7 @@ const Login = () => {
         );
 
         if (!response.ok) {
+          console.log('err in !res ok');
           navigate(`${PAGE_CONFIG.ERROR}/${response.status}`, {
             state: {
               message: response.text,
@@ -70,6 +71,7 @@ const Login = () => {
 
         return await response.json();
       } catch (err) {
+        console.log('err in catch');
         const error = ensureError(err);
 
         throw new BaseError('Error with fetch login', {
