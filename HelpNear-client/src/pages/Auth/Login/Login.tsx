@@ -53,7 +53,8 @@ const Login = () => {
         );
 
         if (response.status === 401) {
-          errorMessage.showNotification(response.statusText, {});
+          const errorData = response.json();
+          errorMessage.showNotification(errorData.message, {});
         }
 
         if (!response.ok) {
