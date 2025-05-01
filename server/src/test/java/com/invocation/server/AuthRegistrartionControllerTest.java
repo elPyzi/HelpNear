@@ -19,15 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 public class AuthRegistrartionControllerTest {
-
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private ObjectMapper objectMapper;
-
     private RegistrationUserDto registrationUserDto;
-
     @BeforeEach
     public void setUp() {
         registrationUserDto = new RegistrationUserDto();
@@ -39,7 +35,6 @@ public class AuthRegistrartionControllerTest {
         registrationUserDto.setContactNumber("+79991234567");
         registrationUserDto.setBirthDate("1990-01-01");
     }
-
     @Test
     public void testSuccessfulRegistration() throws Exception {
         mockMvc.perform(post("/auth/register")
@@ -48,7 +43,6 @@ public class AuthRegistrartionControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.errorCode").value(0));
     }
-
     @Test
     public void testRegistrationWithExistingUser() throws Exception {
         mockMvc.perform(post("/auth/register")

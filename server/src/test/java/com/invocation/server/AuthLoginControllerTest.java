@@ -18,23 +18,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 public class AuthLoginControllerTest {
-
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private ObjectMapper objectMapper;
-
     private LoginUserDto loginUserDto;
-
     @BeforeEach
     public void setUp() {
-        // Подготовка данных для логина с использованием существующего пользователя
         loginUserDto = new LoginUserDto();
-        loginUserDto.setAuthString("sosiska1"); // Логин существующего пользователя
-        loginUserDto.setPassword("123456789");  // Пароль существующего пользователя
+        loginUserDto.setAuthString("sosiska1");
+        loginUserDto.setPassword("123456789");
     }
-
     @Test
     public void testSuccessfulLoginWithLogin() throws Exception {
         mockMvc.perform(post("/auth/login")
@@ -51,7 +45,6 @@ public class AuthLoginControllerTest {
                 .andExpect(cookie().maxAge("accessToken", 900))
                 .andExpect(cookie().maxAge("refreshToken", 604800));
     }
-
     @Test
     public void testSuccessfulLoginWithEmail() throws Exception {
         loginUserDto.setAuthString("sos@gmail.com");
@@ -67,7 +60,6 @@ public class AuthLoginControllerTest {
                 .andExpect(cookie().exists("accessToken"))
                 .andExpect(cookie().exists("refreshToken"));
     }
-
     @Test
     public void testLoginWithWrongPassword() throws Exception {
         loginUserDto.setPassword("wrongpassword");
@@ -77,7 +69,6 @@ public class AuthLoginControllerTest {
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.errorCode").value(401));
     }
-
     @Test
     public void testLoginWithNonExistentUser() throws Exception {
         loginUserDto.setAuthString("nonexistentuser");

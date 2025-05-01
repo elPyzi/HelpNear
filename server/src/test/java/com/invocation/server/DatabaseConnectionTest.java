@@ -16,21 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @Transactional
 public class DatabaseConnectionTest {
-
     @Autowired
     private DataSource dataSource;
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
     @Test
     public void testDatabaseConnection() throws SQLException {
         assertNotNull(dataSource, "DataSource не должен быть null");
-
         try (Connection connection = dataSource.getConnection()) {
             assertTrue(connection.isValid(1), "Подключение к базе данных должно быть валидным");
         }
-
         assertNotNull(jdbcTemplate, "JdbcTemplate не должен быть null");
         Integer result = jdbcTemplate.queryForObject("SELECT 1", Integer.class);
         assertNotNull(result, "Результат запроса не должен быть null");
